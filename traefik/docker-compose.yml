@@ -1,0 +1,49 @@
+version: "3.7" #todo 3.8
+
+services:
+  traefik:
+    image: "traefik:latest"
+    container_name: "traefik"
+    restart: unless-stopped
+    networks:
+      - proxy
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:81"
+    ports:
+      - "81:81" # temp change back to 80
+      - "8080:8080"
+      - 443:443
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/traefik.yml:ro
+      - ./acme.json:/acme.json
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`127.0.0.1`)"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=USER:PASSWORD"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`127.0.0.1`)"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=http"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+
+  whoami:
+    image: "containous/whoami"
+    container_name: "simple-service"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`127.0.0.1`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,45 @@
+version: "3.7" #todo 3.8
+
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      #- "67:67/udp"
+      - "80:80/tcp"
+      # - "443:443/tcp"
+    environment:
+      TZ: 'America/Chicago'
+      WEBPASSWORD: 'temp123' #TODO secrets
+      DNS1: 127.0.0.1
+      DNS2: 1.1.1.1
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.entrypoints=http"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.example.com`)"
+      - "traefik.http.middlewares.pihole-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.pihole.middlewares=pihole-https-redirect"
+      - "traefik.http.routers.pihole-secure.entrypoints=https"
+      - "traefik.http.routers.pihole-secure.rule=Host(`pihole.example.com`)"
+      - "traefik.http.routers.pihole-secure.tls=true"
+      - "traefik.http.routers.pihole-secure.tls.certresolver=http"
+      - "traefik.http.routers.pihole-secure.service=pihole"
+      - "traefik.http.services.pihole.loadbalancer.server.port=9000"
+      - "traefik.docker.network=proxy"
+
+
+networks:
+  proxy:
+    external: true
