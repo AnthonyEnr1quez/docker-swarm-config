@@ -1,0 +1,12 @@
+## What do I want?
+- [x] pihole
+    - [] default routing for docker host port 80 https://github.com/pi-hole/docker-pi-hole#tips-and-tricks
+    - [] create script for local dns gen https://dev.to/stjohnjohnson/internal-domains-with-dnsmasq-and-pi-hole-4cof
+- [] media server, eventually nas
+- [] ability to expand
+- [] ansible playbook to automate pi setup?
+- [x] reverse proxy to containers
+- [] auto update containers
+- [] bitwarden?
+- [] k3s multiple pis
+- [] disposable email container?
