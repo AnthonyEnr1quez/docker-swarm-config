@@ -1,0 +1,4 @@
+## temp ignore volumes
+caddy/data
+pihole/etc-dnsmasqd
+pihole/etc-pihole
