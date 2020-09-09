@@ -13,12 +13,12 @@ services:
       - "53:53/udp"
       - "67:67/udp"
       - "8053:80/tcp"
-      - "443:443/tcp"
+      - "8054:443/tcp"
     environment:
       ServerIP: 192.168.1.50
-      PROXY_LOCATION: pihole
+      # PROXY_LOCATION: pihole
       #VIRTUAL_HOST: pihole.homedomain.lan
-      VIRTUAL_PORT: 80
+      # VIRTUAL_PORT: 80
       TZ: 'America/Denver'
       WEBPASSWORD: 'temp123' #TODO secrets
       DNS1: 127.0.0.1
@@ -29,10 +29,11 @@ services:
       - ./etc-dnsmasqd/:/etc/dnsmasq.d/
       # run `touch ./pihole.log` first unless you like errors
       # - ./pihole.log:/var/log/pihole.log
-    # Recommended but not required (DHCP needs NET_ADMIN)
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    #cap_add:
-    # - NET_ADMIN
+    labels:
+      caddy: pihole.example.com
+      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy.tls: "internal"
+      caddy.tls.on_demand:
 
 networks:
   caddy_proxy:
