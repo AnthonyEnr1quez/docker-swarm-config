@@ -10,3 +10,6 @@
 - [] bitwarden?
 - [] k3s multiple pis
 - [] disposable email container?
+- [] ddClient
+- [] homepage
+- [] portainer
