@@ -2,20 +2,25 @@ version: "3.8"
 services:
   qbittorrent-openvpn:
     image: guillaumedsde/alpine-qbittorrent-openvpn:latest
-    volumes:
-      - "/your/storage/path/:/downloads"
-      - "/path/to/config/directory:/config"
-      - "/etc/localtime:/etc/localtime:ro"
+    # volumes:
+      # - "/your/storage/path/:/downloads"
+      # - "/path/to/config/directory:/config"
+      # - "/etc/localtime:/etc/localtime:ro"
     environment:
       - OPENVPN_PROVIDER=MULLVAD
-      - OPENVPN_CONFIG=CA\
-      - OPENVPN_USERNAME=user
-      - OPENVPN_PASSWORD=pass
+      - OPENVPN_CONFIG=default
+      # - OPENVPN_USERNAME=
+      # - OPENVPN_PASSWORD=
       - PUID=1000
       - PGID=1000
       - LAN=192.168.0.0/16
     ports:
-      - "8080:8080"
+      - "8055:8080"
+    labels:
+      caddy: qbittorent.example.com
+      caddy.reverse_proxy: "{{upstreams 8080}}"
+      caddy.tls: "internal"
+      caddy.tls.on_demand:
     cap_add:
       - NET_ADMIN
 
