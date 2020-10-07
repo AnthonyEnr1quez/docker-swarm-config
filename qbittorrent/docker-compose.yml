@@ -16,6 +16,8 @@ services:
       - LAN=192.168.0.0/16
     ports:
       - "8055:8080"
+    networks:
+      - caddy_proxy
     labels:
       caddy: qbittorent.example.com
       caddy.reverse_proxy: "{{upstreams 8080}}"
