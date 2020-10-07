@@ -13,3 +13,5 @@
 - [] ddClient
 - [] homepage
 - [] portainer
+- [] setup pihole dns based on generated caddy file
+- 
