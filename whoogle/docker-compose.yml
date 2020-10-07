@@ -1,9 +1,10 @@
 version: "3.8"
 
+#TODO https://github.com/benbusby/whoogle-search/issues/117
 services:
   whoogle-search:
     image: benbusby/whoogle-search:latest
-    container_name: whoogle-search
+    container_name: whoogle
     ports:
       - 5000:5000
     restart: unless-stopped

@@ -2,6 +2,7 @@ version: "3.8"
 services:
   qbittorrent-openvpn:
     image: guillaumedsde/alpine-qbittorrent-openvpn:latest
+    container_name: qbittorrent
     # volumes:
       # - "/your/storage/path/:/downloads"
       # - "/path/to/config/directory:/config"
