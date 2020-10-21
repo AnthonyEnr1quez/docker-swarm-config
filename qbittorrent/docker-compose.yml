@@ -14,7 +14,7 @@ services:
       # - OPENVPN_PASSWORD=
       - PUID=1000
       - PGID=1000
-      - LAN=192.168.0.0/16
+      - LAN=10.10.30.0/24
     ports:
       - "8055:8080"
     networks:

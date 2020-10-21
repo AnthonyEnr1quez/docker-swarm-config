@@ -14,4 +14,15 @@
 - [] homepage
 - [] portainer
 - [] setup pihole dns based on generated caddy file
-- 
+- [] have sonarr use caddy urls instead of container directly http://containername:port
+- [] gitea
+- [] drone ci
+- [] rss
+- [] graph monitors
+- [] gaps
+- [] bazarr
+- [] grocy
+- [] fix whoogle
+- [] authelia
+- [] radarr
+- [] email, poste.io
