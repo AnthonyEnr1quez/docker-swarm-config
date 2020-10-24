@@ -1,3 +1,5 @@
 ## temp ignore volumes
 pihole/etc-dnsmasqd
 pihole/etc-pihole
+
+.vscode

@@ -6,7 +6,7 @@ services:
     image: pihole/pihole:latest
     restart: unless-stopped
     networks:
-      - caddy_proxy
+      - proxy
     ports:
       - "53:53/tcp"
       - "53:53/udp"
@@ -18,18 +18,21 @@ services:
       WEBPASSWORD: 'temp123' #TODO secrets
       DNS1: 127.0.0.1
       DNS2: 9.9.9.9
+      FTL_CMD: debug
+      DNSMASQ_LISTENING: all
     # Volumes store your data between container upgrades
-    volumes:
-      - ./etc-pihole/:/etc/pihole/
-      - ./etc-dnsmasqd/:/etc/dnsmasq.d/
+    # volumes:
+      # - etc-pihole:/etc/pihole/
+      # - etc-dnsmasqd:/etc/dnsmasq.d/
       # run `touch ./pihole.log` first unless you like errors
       # - ./pihole.log:/var/log/pihole.log
-    labels:
-      caddy: pihole.example.com
-      caddy.reverse_proxy: "{{upstreams 80}}"
-      caddy.tls: "internal"
-      caddy.tls.on_demand:
+    deploy:
+      labels:
+        caddy: pihole.example.com
+        caddy.reverse_proxy: "{{upstreams 80}}"
+        caddy.tls: "internal"
+        caddy.tls.on_demand:
 
 networks:
-  caddy_proxy:
+  proxy:
     external: true

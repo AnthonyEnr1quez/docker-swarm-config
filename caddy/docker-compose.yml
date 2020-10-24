@@ -17,9 +17,12 @@ services:
     labels: # Global options
       caddy.email: dttztceclomabxpzit@kiabws.online
 
+# networks:
+#   proxy:
+#     driver: overlay
 networks:
   proxy:
-    driver: bridge
+    external: true
 
 volumes:
   caddy_data: {}
