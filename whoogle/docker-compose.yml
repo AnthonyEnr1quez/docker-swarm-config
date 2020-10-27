@@ -9,13 +9,14 @@ services:
       - 5000:5000
     restart: unless-stopped
     networks:
-      - caddy_proxy
-    labels:
-      caddy: whoogle.example.com
-      caddy.reverse_proxy: "{{upstreams 5000}}"
-      caddy.tls: "internal"
-      caddy.tls.on_demand:
+      - proxy
+    deploy:
+      labels:
+        caddy: whoogle.example.com
+        caddy.reverse_proxy: "{{upstreams 5000}}"
+        caddy.tls: "internal"
+        caddy.tls.on_demand:
 
 networks:
-  caddy_proxy:
+  proxy:
     external: true

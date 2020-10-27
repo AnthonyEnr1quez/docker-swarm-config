@@ -16,13 +16,11 @@ services:
       - caddy_data:/data
     labels: # Global options
       caddy.email: dttztceclomabxpzit@kiabws.online
-
-# networks:
-#   proxy:
-#     driver: overlay
+          
 networks:
   proxy:
-    external: true
+    driver: overlay
+    attachable: true
 
 volumes:
   caddy_data: {}
