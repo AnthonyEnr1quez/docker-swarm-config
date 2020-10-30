@@ -3,3 +3,5 @@ pihole/etc-dnsmasqd
 pihole/etc-pihole
 
 .vscode
+.env
+

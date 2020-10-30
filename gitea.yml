@@ -4,6 +4,7 @@ version: "3.8"
 services:
   gitea:
     image: kunde21/gitea-arm
+    env_file: .env
     restart: unless-stopped
     networks:
       - proxy
@@ -29,7 +30,7 @@ volumes:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "vers=4,port=2049,addr=192.168.0.201,rw"
+      o: $NFS_CONN
       device: ":/gitea/data"
 
 networks:

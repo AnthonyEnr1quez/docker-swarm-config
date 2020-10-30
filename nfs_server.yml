@@ -3,9 +3,10 @@ version: "3.8"
 # https://askubuntu.com/questions/525243/why-do-i-get-wrong-fs-type-bad-option-bad-superblock-error
 services:
   nfs-server:
-    privileged: true # cant run this in swarm mode :(
     image: gists/nfs-server
     container_name: nfs-server
+    env_file: .env
+    privileged: true # cant run this in swarm mode :(
     # networks:
     #   - proxy
     ports:
@@ -15,20 +16,12 @@ services:
       - SYS_ADMIN
       - SETPCAP
     environment:
-      TZ: 'America/Denver'
+      TZ: $TZ
       NFS_OPTION: 'fsid=0,rw,sync,insecure,no_subtree_check,nohide,no_root_squash' ## use userid
       # NFS_DOMAIN: "*" # The visitor IP range
     volumes:
       - /docker/data:/nfs-share
     restart: always
-    deploy:
-      placement:
-        constraints: [node.role == manager]
-    #   labels:
-    #     caddy: pihole.example.com
-    #     caddy.reverse_proxy: "{{upstreams 80}}"
-    #     caddy.tls: "internal"
-    #     caddy.tls.on_demand:
 
 # networks:
 #   proxy:

@@ -3,7 +3,7 @@ version: "3.8"
 services:
   caddy:
     image: lucaslorentz/caddy-docker-proxy:ci-alpine-arm32v6
-    container_name: caddy
+    env_file: .env
     ports:
       - 80:80
       - 443:443
@@ -16,11 +16,18 @@ services:
       - caddy_data:/data
     labels: # Global options
       caddy.email: dttztceclomabxpzit@kiabws.online
+    deploy:
+      placement:
+        constraints: [node.role == manager]
           
+volumes:
+  caddy_data:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/caddy"
+
 networks:
   proxy:
-    driver: overlay
-    attachable: true
-
-volumes:
-  caddy_data: {}
+    external: true
