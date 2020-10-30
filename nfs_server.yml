@@ -3,7 +3,7 @@ version: "3.8"
 # https://askubuntu.com/questions/525243/why-do-i-get-wrong-fs-type-bad-option-bad-superblock-error
 services:
   nfs-server:
-    privileged: true
+    privileged: true # cant run this in swarm mode :(
     image: gists/nfs-server
     container_name: nfs-server
     # networks:

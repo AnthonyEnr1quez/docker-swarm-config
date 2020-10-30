@@ -11,14 +11,13 @@
 - [x] reverse proxy to containers
 - [] auto update containers
 - [] bitwarden?
-- [] k3s multiple pis
 - [] disposable email container?
 - [] ddClient
 - [] homepage
 - [x] portainer
 - [] setup pihole dns based on generated caddy file
 - [] have sonarr use caddy urls instead of container directly http://containername:port
-- [] gitea
+- [x] gitea
 - [] drone ci
 - [] rss
 - [] graph monitors
@@ -30,6 +29,7 @@
 - [] radarr
 - [] email, poste.io
 - [] adguard home
+- [] hashicorp vault
 
 ## docker swarm notes
 1. init swarm
@@ -44,3 +44,5 @@
 
 sudo mount -v -t nfs -o vers=4,port=2049 192.168.0.201:/ docker/data
 umount -f -l /mnt/myfolder
+
+make sure to rm old name volumes
