@@ -2,20 +2,20 @@ version: "3.8"
 services:
   jackett:
     image: linuxserver/jackett
+    env_file: .env
+    ports:
+      - 9117:9117
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Denver
-      - AUTO_UPDATE=true #optional
+      PUID: $UID
+      PGID: $GID
+      TZ: $TZ
+      AUTO_UPDATE: true #optional
       # - RUN_OPTS=<run options here> #optional
+    networks:
+      - proxy
     volumes:
       - jackett-config:/config
       - jackett-downloads:/downloads
-    ports:
-      - 9117:9117
-    restart: unless-stopped
-    networks:
-      - caddy_proxy
     labels:
       caddy: jackett.example.com
       caddy.reverse_proxy: "{{upstreams 9117}}"
@@ -23,9 +23,20 @@ services:
       caddy.tls.on_demand:
 
 networks:
-  caddy_proxy:
+  proxy:
     external: true
-    
+
+#todo, once external drive is mounted
 volumes:
   jackett-config:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/gitea/data"
   jackett-downloads:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/gitea/data"

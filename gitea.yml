@@ -5,19 +5,18 @@ services:
   gitea:
     image: kunde21/gitea-arm
     env_file: .env
-    restart: unless-stopped
-    networks:
-      - proxy
     ports:
       - "3000:3000"
       - "222:22"
     environment:
-      - USER_UID=1000
-      - USER_GID=1000
+      USER_UID: $UID
+      USER_GID: $GID
+    networks:
+      - proxy
     volumes:
-      - gitea:/data
-      # - /etc/timezone:/etc/timezone:ro
-      # - /etc/localtime:/etc/localtime:ro
+      - gitea-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     deploy:
       labels:
         caddy: gitea.example.com
@@ -25,14 +24,14 @@ services:
         caddy.tls: "internal"
         caddy.tls.on_demand:
 
+networks:
+  proxy:
+    external: true
+
 volumes:
-  gitea:
+  gitea-data:
     driver: local
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
       device: ":/gitea/data"
-
-networks:
-  proxy:
-    external: true

@@ -7,6 +7,7 @@ services:
     container_name: nfs-server
     env_file: .env
     privileged: true # cant run this in swarm mode :(
+    restart: always
     # networks:
     #   - proxy
     ports:
@@ -17,11 +18,10 @@ services:
       - SETPCAP
     environment:
       TZ: $TZ
-      NFS_OPTION: 'fsid=0,rw,sync,insecure,no_subtree_check,nohide,no_root_squash' ## use userid
+      NFS_OPTION: 'fsid=0,rw,sync,insecure,no_subtree_check,nohide,no_root_squash' ## todo use userid
       # NFS_DOMAIN: "*" # The visitor IP range
     volumes:
       - /docker/data:/nfs-share
-    restart: always
 
 # networks:
 #   proxy:

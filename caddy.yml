@@ -19,6 +19,10 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+
+networks:
+  proxy:
+    external: true
           
 volumes:
   caddy_data:
@@ -27,7 +31,3 @@ volumes:
       type: "nfs"
       o: $NFS_CONN
       device: ":/caddy"
-
-networks:
-  proxy:
-    external: true

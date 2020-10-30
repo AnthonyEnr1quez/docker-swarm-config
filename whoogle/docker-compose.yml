@@ -6,7 +6,6 @@ services:
     image: benbusby/whoogle-search:latest
     ports:
       - 5000:5000
-    restart: unless-stopped
     networks:
       - proxy
     deploy:
