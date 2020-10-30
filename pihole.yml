@@ -21,9 +21,9 @@ services:
       FTL_CMD: debug
       DNSMASQ_LISTENING: all
     # Volumes store your data between container upgrades
-    # volumes:
-      # - etc-pihole:/etc/pihole/
-      # - etc-dnsmasqd:/etc/dnsmasq.d/
+    volumes:
+      - etc-pihole:/etc/pihole/
+      - etc-dnsmasqd:/etc/dnsmasq.d/
       # run `touch ./pihole.log` first unless you like errors
       # - ./pihole.log:/var/log/pihole.log
     deploy:
@@ -32,6 +32,20 @@ services:
         caddy.reverse_proxy: "{{upstreams 80}}"
         caddy.tls: "internal"
         caddy.tls.on_demand:
+
+volumes:
+  etc-pihole:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "vers=4,port=2049,addr=192.168.0.201,rw"
+      device: ":/pihole/etc-pihole"
+  etc-dnsmasqd:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "vers=4,port=2049,addr=192.168.0.201,rw"
+      device: ":/pihole/etc-dnsmasqd"
 
 networks:
   proxy:
