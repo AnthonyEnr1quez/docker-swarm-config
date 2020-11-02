@@ -14,7 +14,7 @@ services:
     networks:
       - proxy
     volumes:
-      - gitea-data:/data
+      - gitea_data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     deploy:
@@ -29,9 +29,9 @@ networks:
     external: true
 
 volumes:
-  gitea-data:
+  gitea_data:
     driver: local
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
-      device: ":/gitea/data"
+      device: ":/gitea"

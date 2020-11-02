@@ -1,6 +1,7 @@
 version: "3.8"
 
 # https://askubuntu.com/questions/525243/why-do-i-get-wrong-fs-type-bad-option-bad-superblock-error
+# currently only working when folders are init with root account on master node
 services:
   nfs-server:
     image: gists/nfs-server
@@ -21,7 +22,7 @@ services:
       NFS_OPTION: 'fsid=0,rw,sync,insecure,no_subtree_check,nohide,no_root_squash' ## todo use userid
       # NFS_DOMAIN: "*" # The visitor IP range
     volumes:
-      - /docker/data:/nfs-share
+      - /mnt/nas1:/nfs-share
 
 # networks:
 #   proxy:

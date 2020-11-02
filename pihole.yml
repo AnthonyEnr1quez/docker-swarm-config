@@ -21,8 +21,8 @@ services:
       - proxy
     # Volumes store your data between container upgrades
     volumes:
-      - etc-pihole:/etc/pihole/
-      - etc-dnsmasqd:/etc/dnsmasq.d/
+      - etc_pihole:/etc/pihole/
+      - etc_dnsmasqd:/etc/dnsmasq.d/
       # run `touch ./pihole.log` first unless you like errors
       # - ./pihole.log:/var/log/pihole.log
     deploy:
@@ -37,15 +37,15 @@ networks:
     external: true
 
 volumes:
-  etc-pihole:
+  etc_pihole:
     driver: local
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
-      device: ":/pihole/etc-pihole"
-  etc-dnsmasqd:
+      device: ":/pihole/etc_pihole"
+  etc_dnsmasqd:
     driver: local
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
-      device: ":/pihole/etc-dnsmasqd"
+      device: ":/pihole/etc_dnsmasqd"

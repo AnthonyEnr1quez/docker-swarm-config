@@ -12,11 +12,11 @@ services:
       TZ: $TZ
       UMASK_SET: 022 #optional
     volumes:
-      - config:/config
-      - tv:/tv
-      - downloads:/downloads
+      - sonarr_config:/config
+      - sonarr_tv:/tv
+      - sonarr_downloads:/downloads
     networks:
-      - caddy_proxy
+      - proxy
     labels:
       caddy: sonarr.example.com
       caddy.reverse_proxy: "{{upstreams 8989}}"
@@ -24,11 +24,25 @@ services:
       caddy.tls.on_demand:
 
 networks:
-  caddy_proxy:
+  proxy:
     external: true
 
-#todo
 volumes:
-  config:
-  tv:
-  downloads:
+  sonarr_config:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/sonarr/config"
+  sonarr_tv:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/sonarr/config"
+  sonarr_downloads:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/sonarr/config"

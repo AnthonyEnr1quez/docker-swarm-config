@@ -4,4 +4,4 @@ pihole/etc-pihole
 
 .vscode
 .env
-
+.nfs_conn

@@ -9,13 +9,13 @@ services:
       PUID: $UID
       PGID: $GID
       TZ: $TZ
-      AUTO_UPDATE: true #optional
+      AUTO_UPDATE: "true" #optional
       # - RUN_OPTS=<run options here> #optional
     networks:
       - proxy
     volumes:
-      - jackett-config:/config
-      - jackett-downloads:/downloads
+      - jackett_config:/config
+      - jackett_downloads:/downloads
     labels:
       caddy: jackett.example.com
       caddy.reverse_proxy: "{{upstreams 9117}}"
@@ -26,17 +26,16 @@ networks:
   proxy:
     external: true
 
-#todo, once external drive is mounted
 volumes:
-  jackett-config:
+  jackett_config:
     driver: local
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
-      device: ":/gitea/data"
-  jackett-downloads:
+      device: ":/jackett/config"
+  jackett_downloads:
     driver: local
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
-      device: ":/gitea/data"
+      device: ":/jackett/downloads"
