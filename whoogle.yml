@@ -3,7 +3,7 @@ version: "3.8"
 #TODO https://github.com/benbusby/whoogle-search/issues/117
 services:
   whoogle-search:
-    image: benbusby/whoogle-search:latest
+    image: brightopia/whoogle-search
     ports:
       - 5000:5000
     networks:

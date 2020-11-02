@@ -6,8 +6,8 @@
     - [] unbound
     - [] stubby
 - [] media server
-- [] eventually nas
-- [] ability to expand
+- [x] eventually nas
+- [x] ability to expand
 - [] ansible playbook to automate pi setup?
 - [x] reverse proxy to containers
 - [x] shepherd
@@ -26,7 +26,7 @@
 - [] gaps
 - [] bazarr
 - [] grocy
-- [] fix whoogle
+- [x] fix whoogle
 - [] authelia
 - [x] radarr
 - [] email, poste.io
@@ -48,7 +48,5 @@
 
 sudo mount -v -t nfs -o vers=4,port=2049 192.168.0.201:/ docker/data
 umount -f -l /mnt/myfolder
-
-make sure to rm old name volumes
 
 - add nfs server and qbittorrent to swarm once https://github.com/moby/moby/issues/25885 is finished
