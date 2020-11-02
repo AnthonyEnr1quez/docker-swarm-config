@@ -1,25 +1,25 @@
 version: "3.8"
 
 services:
-  sonarr:
-    image: linuxserver/sonarr:preview
+  radarr:
+    image: linuxserver/radarr:preview
     env_file: .env
     ports:
-      - 8989:8989
+      - 7878:7878
     environment:
       PUID: $UID
       PGID: $GID
       TZ: $TZ
       UMASK_SET: 022 #optional
     volumes:
-      - sonarr_config:/config
-      - sonarr_tv:/tv
-      - sonarr_downloads:/downloads
+      - radarr_config:/config
+      - radarr_movies:/movies
+      - radarr_downloads:/downloads
     networks:
       - proxy
     labels:
-      caddy: sonarr.example.com
-      caddy.reverse_proxy: "{{upstreams 8989}}"
+      caddy: radarr.example.com
+      caddy.reverse_proxy: "{{upstreams 7878}}"
       caddy.tls: "internal"
       caddy.tls.on_demand:
 
@@ -28,21 +28,21 @@ networks:
     external: true
 
 volumes:
-  sonarr_config:
+  radarr_config:
     driver: local
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
-      device: ":/sonarr/config"
-  sonarr_tv:
+      device: ":/radarr/config"
+  radarr_movies:
     driver: local
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
-      device: ":/sonarr/tv"
-  sonarr_downloads:
+      device: ":/radarr/movies"
+  radarr_downloads:
     driver: local
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
-      device: ":/sonarr/downloads"
+      device: ":/radarr/downloads"

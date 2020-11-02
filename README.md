@@ -10,7 +10,7 @@
 - [] ability to expand
 - [] ansible playbook to automate pi setup?
 - [x] reverse proxy to containers
-- [] watchtower
+- [x] shepherd
     - [] notifications
 - [] bitwarden?
 - [] disposable email container?
@@ -28,7 +28,7 @@
 - [] grocy
 - [] fix whoogle
 - [] authelia
-- [] radarr
+- [x] radarr
 - [] email, poste.io
 - [] adguard home
 - [] hashicorp vault
