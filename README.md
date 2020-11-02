@@ -45,6 +45,7 @@
 - need odd number of managers to prevent deadlock?
 - [] figure out how to init in wsl
 
+docker volume rm $(docker volume ls -q)
 
 sudo mount -v -t nfs -o vers=4,port=2049 192.168.0.201:/ docker/data
 umount -f -l /mnt/myfolder

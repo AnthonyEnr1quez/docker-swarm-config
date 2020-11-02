@@ -2,7 +2,8 @@ version: "3.8"
 
 services:
   qbittorrent-openvpn:
-    image: guillaumedsde/alpine-qbittorrent-openvpn:latest
+    image: guillaumedsde/alpine-qbittorrent-openvpn
+    container_name: qbittorrent
     env_file: 
       - .env
     ports:
@@ -22,7 +23,7 @@ services:
       - qbittorrent_downloads:/downloads
       - /etc/localtime:/etc/localtime:ro
     labels:
-      caddy: qbittorent.example.com
+      caddy: qbittorrent.example.com
       caddy.reverse_proxy: "{{upstreams 8080}}"
       caddy.tls: "internal"
       caddy.tls.on_demand:
