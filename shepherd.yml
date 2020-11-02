@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  shepherd:
+    image: mazzolino/shepherd
+    environment:
+      SLEEP_TIME: 2040m # 1 day
+    networks:
+      - proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints:
+        - node.role == manager
+
+networks:
+  proxy:
+    external: true

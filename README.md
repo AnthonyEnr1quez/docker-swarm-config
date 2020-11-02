@@ -10,7 +10,8 @@
 - [] ability to expand
 - [] ansible playbook to automate pi setup?
 - [x] reverse proxy to containers
-- [] auto update containers
+- [] watchtower
+    - [] notifications
 - [] bitwarden?
 - [] disposable email container?
 - [] ddClient
