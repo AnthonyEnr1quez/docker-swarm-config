@@ -4,8 +4,6 @@ services:
   radarr:
     image: linuxserver/radarr:preview
     env_file: .env
-    ports:
-      - 7878:7878
     environment:
       PUID: $UID
       PGID: $GID

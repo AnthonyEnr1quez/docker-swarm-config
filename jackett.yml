@@ -3,8 +3,6 @@ services:
   jackett:
     image: linuxserver/jackett
     env_file: .env
-    ports:
-      - 9117:9117
     environment:
       PUID: $UID
       PGID: $GID

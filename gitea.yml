@@ -6,7 +6,6 @@ services:
     image: kunde21/gitea-arm
     env_file: .env
     ports:
-      - "3000:3000"
       - "222:22"
     environment:
       USER_UID: $UID
