@@ -7,7 +7,7 @@ services:
     image: gists/nfs-server
     container_name: nfs-server
     env_file: .env
-    privileged: true # cant run this in swarm mode :(
+    privileged: true
     restart: always
     # networks:
     #   - proxy
