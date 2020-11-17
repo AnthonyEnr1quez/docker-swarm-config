@@ -1,0 +1,52 @@
+version: "3.8"
+
+# http://jell.yfish.us/
+# https://support.plex.tv/articles/201543147-what-network-ports-do-i-need-to-allow-through-my-firewall/
+services:
+  plex:
+    image: linuxserver/plex
+    env_file: .env
+    ports:
+      - 32400:32400
+    networks:
+      - proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - UMASK_SET=022 #optional
+      - PLEX_CLAIM= #optional
+    volumes:
+      - plex_config:/config
+      - plex_tv:/tv
+      - plex_movies:/movies
+    deploy:
+      labels:
+        caddy: plex.example.com
+        caddy.reverse_proxy: "{{upstreams 32400}}"
+        caddy.tls: "internal"
+        caddy.tls.on_demand:
+
+networks:
+  proxy:
+    external: true         
+
+volumes:
+  plex_config:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/plex/config"
+  plex_tv:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/plex/tv"
+  plex_movies:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/plex/movies"

@@ -5,7 +5,7 @@
     - [] create script for local dns gen https://dev.to/stjohnjohnson/internal-domains-with-dnsmasq-and-pi-hole-4cof
     - [] unbound
     - [] stubby
-- [] media server
+- [x] media server
 - [x] eventually nas
 - [x] ability to expand
 - [] ansible playbook to automate pi setup?
@@ -21,6 +21,7 @@
 - [] have sonarr use caddy urls instead of container directly http://containername:port
 - [x] gitea
 - [] drone ci
+- [] trakt
 - [] rss
 - [] graph monitors
 - [] gaps
@@ -35,15 +36,6 @@
 - [] nas auto remount
 - [] when mounting nfs from dir with both nas and sd card folder, containers will write to sd card in "nas" folder
 
-## docker swarm notes
-1. init swarm
-2. add workers
-3. promote both workers to managers `docker node promote nodename`
-4. create network with swarm scope `docker network create -d overlay proxy`
-5. deploy stack `docker stack deploy --compose-file caddy/docker-compose.yml --compose-file pihole/docker-compose.yml stackName`
-6. view services `docker service ps stackName_serviceName`
-- need odd number of managers to prevent deadlock?
-- [] figure out how to init in wsl
 
 docker volume rm $(docker volume ls -q)
 
@@ -55,3 +47,5 @@ umount -f -l /mnt/myfolder
 curl ifconfig.me
 http://whois.domaintools.com
 sudo ifconfig -a 
+
+https://github.com/moby/moby/issues/29133

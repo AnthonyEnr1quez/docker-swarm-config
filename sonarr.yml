@@ -15,11 +15,12 @@ services:
       - sonarr_downloads:/downloads
     networks:
       - proxy
-    labels:
-      caddy: sonarr.example.com
-      caddy.reverse_proxy: "{{upstreams 8989}}"
-      caddy.tls: "internal"
-      caddy.tls.on_demand:
+    deploy:
+      labels:
+        caddy: sonarr.example.com
+        caddy.reverse_proxy: "{{upstreams 8989}}"
+        caddy.tls: "internal"
+        caddy.tls.on_demand:
 
 networks:
   proxy:

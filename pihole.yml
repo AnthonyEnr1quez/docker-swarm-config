@@ -7,8 +7,7 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "67:67/udp"
-      - "8054:443/tcp"
+      - "67:67/udp" # dhcp
     environment:
       TZ: $TZ
       WEBPASSWORD: $PIHOLE_PASS
@@ -27,7 +26,7 @@ services:
     deploy:
       labels:
         caddy: pihole.example.com
-        caddy.reverse_proxy: "{{upstreams 80}}"
+        caddy.reverse_proxy: "{{upstreams 80}}" #forwarding 443 breaks the web ui?
         caddy.tls: "internal"
         caddy.tls.on_demand:
 

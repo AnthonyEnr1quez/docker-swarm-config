@@ -1,27 +1,17 @@
 #!/bin/bash
+source .nfs_conn
 # run this only on master node rn
 
-## todo check if running
 docker network create -d overlay --attachable proxy # attachable for qbittorrent until swarmable
 docker-compose -f nfs_server.yml up -d
 
-# echo all ymls
-# TODO filter caddy and nfs_server from options'
-files=(*.yml)
-echo ${files[@]}
+base="NFS_CONN=${NFS_CONN} docker stack deploy"
+caddy="${base} -c caddy.yml -c pihole.yml caddy"
+portainer="${base} -c portainer.yml portainer"
+media="${base} -c jackett.yml -c plex.yml -c radarr.yml -c sonarr.yml media"
+misc="${base} -c gitea.yml -c shepherd.yml -c whoogle.yml misc"
 
-args=( "$@" )
-ds="docker stack deploy -c caddy.yml"
-for i in "${args[@]}"
-do
-    ds+=" -c $i"
-done
-ds+=" caddy"
-echo $ds
-eval $ds
-
-# valid=()
-# for i in "${files[@]}"
-#     if
-# do
-#done
+eval $caddy
+eval $portainer
+eval $media
+eval $misc
