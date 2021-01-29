@@ -21,6 +21,8 @@ services:
       - plex_tv:/tv
       - plex_movies:/movies
     deploy:
+      placement:
+        constraints: [node.hostname == humpback]
       labels:
         caddy: plex.example.com
         caddy.reverse_proxy: "{{upstreams 32400}}"

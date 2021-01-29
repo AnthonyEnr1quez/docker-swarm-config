@@ -16,6 +16,8 @@ services:
     networks:
       - proxy
     deploy:
+      placement:
+        constraints: [node.hostname == humpback]
       labels:
         caddy: sonarr.example.com
         caddy.reverse_proxy: "{{upstreams 8989}}"

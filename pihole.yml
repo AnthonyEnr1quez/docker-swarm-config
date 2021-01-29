@@ -24,6 +24,8 @@ services:
       # run `touch ./pihole.log` first unless you like errors
       # - ./pihole.log:/var/log/pihole.log
     deploy:
+      placement:
+        constraints: [node.role == worker]
       labels:
         caddy: pihole.example.com
         caddy.reverse_proxy: "{{upstreams 80}}" #forwarding 443 breaks the web ui?
