@@ -30,7 +30,9 @@ services:
     labels:
       caddy: qbittorrent.example.com
       caddy.reverse_proxy: "{{upstreams 8080}}"
-      caddy.reverse_proxy.header_upstream: X-Forwarded-Host {host}:443 -Origin -Referer
+      caddy.reverse_proxy.header_upstream X-Forwarded-Host: {host}:443
+      caddy.reverse_proxy.header_upstream -Origin:
+      caddy.reverse_proxy.header_upstream -Referer:
       caddy.tls: "internal"
       caddy.tls.on_demand:
 
