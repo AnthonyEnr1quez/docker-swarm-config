@@ -1,41 +1,4 @@
-## What do I want?
-- [x] update to use docker swarm
-- [x] pihole
-    - [] default routing for docker host port 80 https://github.com/pi-hole/docker-pi-hole#tips-and-tricks
-    - [] create script for local dns gen https://dev.to/stjohnjohnson/internal-domains-with-dnsmasq-and-pi-hole-4cof
-    - [] unbound
-    - [] stubby
-- [x] media server
-- [x] eventually nas
-- [x] ability to expand
-- [] ansible playbook to automate pi setup?
-- [x] reverse proxy to containers
-- [x] shepherd
-    - [] notifications
-- [] bitwarden?
-- [] disposable email container?
-- [] ddClient
-- [] homepage
-- [x] portainer
-- [] setup pihole dns based on generated caddy file
-- [] have sonarr use caddy urls instead of container directly http://containername:port
-- [x] gitea
-- [] drone ci
-- [] trakt
-- [] rss
-- [] graph monitors
-- [] gaps
-- [] bazarr
-- [] grocy
-- [x] fix whoogle
-- [] authelia
-- [x] radarr
-- [] email, poste.io
-- [] adguard home
-- [] hashicorp vault
-- [] nas auto remount
-- [] when mounting nfs from dir with both nas and sd card folder, containers will write to sd card in "nas" folder
-
+# docker
 
 docker volume rm $(docker volume ls -q)
 
