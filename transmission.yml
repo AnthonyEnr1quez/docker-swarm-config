@@ -13,17 +13,11 @@ services:
       # - OPENVPN_CONFIG=france
       # - OPENVPN_USERNAME=user
       # - OPENVPN_PASSWORD=pass
-      - LOCAL_NETWORK=192.168.1.0/16
+      - LOCAL_NETWORK=10.0.2.0/24
     networks:
       - proxy
     volumes:
-      - trans_data:/data
-    logging:
-      driver: json-file
-      options:
-          max-size: 10m
-    ports:
-      - '9091:9091'
+      - transmission_data:/data
     labels:
       caddy: transmission.example.com
       caddy.reverse_proxy: "{{upstreams 9091}}"
@@ -35,4 +29,9 @@ networks:
     external: true
 
 volumes:
-  trans_data:
+  transmission_data:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/transmission/data"
