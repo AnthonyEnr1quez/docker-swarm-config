@@ -14,6 +14,10 @@ services:
       # - OPENVPN_USERNAME=user
       # - OPENVPN_PASSWORD=pass
       - LOCAL_NETWORK=10.0.2.0/24
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
     networks:
       - proxy
     volumes:
