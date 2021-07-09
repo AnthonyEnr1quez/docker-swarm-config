@@ -24,11 +24,14 @@ services:
       - proxy
     volumes:
       - transmission_data:/data
-    labels:
-      caddy: transmission.example.com
-      caddy.reverse_proxy: "{{upstreams 9091}}"
-      caddy.tls: "internal"
-      caddy.tls.on_demand:
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        caddy: transmission.example.com
+        caddy.reverse_proxy: "{{upstreams 9091}}"
+        caddy.tls: "internal"
+        caddy.tls.on_demand:
 
 networks:
   proxy:
