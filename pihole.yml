@@ -11,7 +11,7 @@ services:
     environment:
       TZ: $TZ
       WEBPASSWORD: $PIHOLE_PASS
-      DNS1: 127.0.0.1
+      DNS1: "127.0.0.1#5053"
       DNS2: 9.9.9.9
       FTL_CMD: debug
       DNSMASQ_LISTENING: all

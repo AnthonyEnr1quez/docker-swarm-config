@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  unbound:
+    image: anthonyenr1quez/unbound-arm
+    env_file: .env
+    ports:
+     - "5053:53/udp"
+     - "5053:53/tcp"
+    networks:
+     - proxy
+    volumes:
+      - unbound_conf:/opt/unbound/etc/unbound/
+    deploy:
+      placement:
+        constraints: [node.hostname == beluga]
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  unbound_conf:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/unbound"

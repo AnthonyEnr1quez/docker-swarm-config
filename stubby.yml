@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  stubby:
+    image: anthonyenr1quez/stubby-arm
+    networks:
+     - proxy
+    deploy:
+      placement:
+        constraints: [node.hostname == beluga]
+
+networks:
+  proxy:
+    external: true
