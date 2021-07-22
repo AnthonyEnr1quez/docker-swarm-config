@@ -25,7 +25,7 @@ services:
       # - ./pihole.log:/var/log/pihole.log
     deploy:
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.hostname == beluga]
       labels:
         caddy: pihole.example.com
         caddy.reverse_proxy: "{{upstreams 80}}" #forwarding 443 breaks the web ui?
