@@ -3,8 +3,11 @@ version: "3.8"
 services:
   stubby:
     image: anthonyenr1quez/stubby-arm
+    env_file: .env
     networks:
      - proxy
+    volumes:
+      - stubby_conf:/opt/stubby/etc/stubby/
     deploy:
       placement:
         constraints: [node.hostname == beluga]
@@ -12,3 +15,11 @@ services:
 networks:
   proxy:
     external: true
+
+volumes:
+  stubby_conf:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: $NFS_CONN
+      device: ":/stubby"

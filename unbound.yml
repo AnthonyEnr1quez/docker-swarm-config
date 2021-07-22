@@ -5,8 +5,8 @@ services:
     image: anthonyenr1quez/unbound-arm
     env_file: .env
     ports:
-     - "5053:53/udp"
-     - "5053:53/tcp"
+     - "53:53/udp"
+     - "53:53/tcp"
     networks:
      - proxy
     volumes:
