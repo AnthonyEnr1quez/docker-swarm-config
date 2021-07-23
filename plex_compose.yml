@@ -7,7 +7,7 @@ services:
     image: linuxserver/plex
     env_file: .env
     container_name: plex
-    network_mode: host
+    # network_mode: host
     restart: unless-stopped
     # ports:
     #   - 32400:32400
