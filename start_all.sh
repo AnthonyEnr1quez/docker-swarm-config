@@ -3,7 +3,7 @@ source .nfs_conn
 # run this only on master node rn
 
 docker network create -d overlay --attachable proxy # attachable for qbittorrent until swarmable
-docker network create -d overlay dns
+
 docker-compose -f nfs_server.yml up -d
 docker-compose -f qbittorrent up -d
 
@@ -15,7 +15,12 @@ media="${base} -c jackett.yml -c plex.yml -c radarr.yml -c sonarr.yml media"
 misc="${base} -c shepherd.yml -c whoogle.yml misc"
 
 eval $caddy
-eval $pihole
 eval $portainer
+
+eval $pihole
+
+docker network create -d overlay --attachable dns # for stubby_unbound
+#todo ssh into beluga, pipe in docker-compose? and start stubby_unbound
+
 eval $media
 eval $misc
