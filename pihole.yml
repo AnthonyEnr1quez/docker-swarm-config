@@ -17,6 +17,7 @@ services:
       DNSMASQ_LISTENING: all
     networks:
       - proxy
+      - dns
     # Volumes store your data between container upgrades
     volumes:
       - etc_pihole:/etc/pihole/
@@ -34,6 +35,8 @@ services:
 
 networks:
   proxy:
+    external: true
+  dns:
     external: true
 
 volumes:
