@@ -32,17 +32,17 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 
 ### In Progress
 
-  - [ ] stubby  
-  - [ ] unbound  
-- [ ] pihole  
+- [ ] radarr  
+- [ ] media server  
 
 ### Done ✓
 
+- [x] pihole  
+  - [x] unbound  
+  - [x] stubby  
 - [x] gitea  
 - [x] fix whoogle  
 - [x] portainer  
-- [x] radarr  
-- [x] media server  
 - [x] eventually nas  
 - [x] ability to expand  
 - [x] reverse proxy to containers  
