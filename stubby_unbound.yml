@@ -1,0 +1,25 @@
+version: '3.8'
+
+# run using docker-compose and not in swarm :(
+services:
+  stubby:
+    image: anthonyenr1quez/stubby-arm:pi4
+    networks:
+     - dns
+    restart: unless-stopped
+  unbound:
+    image: anthonyenr1quez/unbound-arm:pi4
+    depends_on:
+      - "stubby"
+    ports:
+     - "53:53/udp"
+     - "53:53/tcp"
+    networks:
+     - dns
+   # volumes:
+   #   - ./unbound/a-records.conf:/opt/unbound/etc/unbound/a-records.conf:ro
+    restart: unless-stopped
+
+networks:
+  dns:
+    external: true
