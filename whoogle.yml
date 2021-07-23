@@ -3,7 +3,7 @@ version: "3.8"
 #TODO https://github.com/benbusby/whoogle-search/issues/117
 services:
   whoogle-search:
-    image: brightopia/whoogle-search
+    image: benbusby/whoogle-search:buildx-experimental
     networks:
       - proxy
     deploy:
