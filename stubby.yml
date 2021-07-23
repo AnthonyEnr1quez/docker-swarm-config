@@ -2,10 +2,10 @@ version: "3.8"
 
 services:
   stubby:
-    image: anthonyenr1quez/stubby-arm
+    image: anthonyenr1quez/stubby-arm:pi4
     env_file: .env
     networks:
-     - proxy
+     - dns
     volumes:
       - stubby_conf:/opt/stubby/etc/stubby/
     deploy:
@@ -13,7 +13,7 @@ services:
         constraints: [node.hostname == beluga]
 
 networks:
-  proxy:
+  dns:
     external: true
 
 volumes:
