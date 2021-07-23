@@ -3,6 +3,7 @@ source .nfs_conn
 # run this only on master node rn
 
 docker network create -d overlay --attachable proxy # attachable for qbittorrent until swarmable
+docker network create -d overlay dns
 docker-compose -f nfs_server.yml up -d
 docker-compose -f qbittorrent up -d
 

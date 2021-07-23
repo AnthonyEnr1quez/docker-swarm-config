@@ -3,23 +3,23 @@ version: "3.8"
 services:
   stubby:
     image: anthonyenr1quez/stubby-arm:pi4
-    env_file: .env
+    # env_file: .env
     networks:
      - dns
     volumes:
       - stubby_conf:/opt/stubby/etc/stubby/
-    deploy:
-      placement:
-        constraints: [node.hostname == beluga]
+    # deploy:
+    #   placement:
+    #     constraints: [node.hostname == beluga]
 
 networks:
   dns:
     external: true
 
-volumes:
-  stubby_conf:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: $NFS_CONN
-      device: ":/stubby"
+# volumes:
+#   stubby_conf:
+#     driver: local
+#     driver_opts:
+#       type: "nfs"
+#       o: $NFS_CONN
+#       device: ":/stubby"
