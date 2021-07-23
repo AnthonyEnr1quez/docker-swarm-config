@@ -12,6 +12,7 @@ services:
     # ports:
     #   - 32400:32400
     networks:
+      - host
       - proxy
     environment:
       - PUID=1000
@@ -31,6 +32,7 @@ services:
       caddy.tls.on_demand:
 
 networks:
+  host:
   proxy:
     external: true         
 
