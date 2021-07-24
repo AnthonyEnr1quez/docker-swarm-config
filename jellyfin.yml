@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    user: uid:gid
+    network_mode: "host"
+    volumes:
+      - /path/to/config:/config
+      - /path/to/cache:/cache
+      - /path/to/media:/media
+      - /path/to/media2:/media2:ro
+    restart: "unless-stopped"
+    # Optional - alternative address used for autodiscovery
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://example.com

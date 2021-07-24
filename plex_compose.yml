@@ -7,51 +7,51 @@ services:
     image: plexinc/pms-docker
     env_file: .env
     container_name: plex
-    # network_mode: host
+    network_mode: host
     restart: unless-stopped
     ports:
       - 32400:32400
-    networks:
-      - proxy
+    # networks:
+    #   - proxy
     environment:
       - 'ADVERTISE_IP=http://$humpback:32400/,https://plex.example.com/'
     volumes:
-      - plex_config:/config
-      - plex_transcode:/transcode
-      - plex_tv:/tv
-      - plex_movies:/movies
-    labels:
-      caddy: plex.example.com
-      caddy.reverse_proxy: "{{upstreams 32400}}"
-      caddy.tls: "internal"
-      caddy.tls.on_demand:
+      - /mnt/nas1/plex/config:/config
+      - /mnt/nas1/plex/transcode:/transcode
+      - /mnt/nas1/plex/tv:/tv
+      - /mnt/nas1/plex/movies:/movies
+    # labels:
+    #   caddy: plex.example.com
+    #   caddy.reverse_proxy: "{{upstreams 32400}}"
+    #   caddy.tls: "internal"
+    #   caddy.tls.on_demand:
 
-networks:
-  proxy:
-    external: true         
+# networks:
+#   proxy:
+#     external: true         
 
-volumes:
-  plex_config:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: $NFS_CONN
-      device: ":/plex/config"
-  plex_transcode:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: $NFS_CONN
-      device: ":/plex/transcode"
-  plex_tv:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: $NFS_CONN
-      device: ":/plex/tv"
-  plex_movies:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: $NFS_CONN
-      device: ":/plex/movies"
+# volumes:
+#   plex_config:
+#     driver: local
+#     driver_opts:
+#       type: "nfs"
+#       o: $NFS_CONN
+#       device: ":/plex/config"
+#   plex_transcode:
+#     driver: local
+#     driver_opts:
+#       type: "nfs"
+#       o: $NFS_CONN
+#       device: ":/plex/transcode"
+#   plex_tv:
+#     driver: local
+#     driver_opts:
+#       type: "nfs"
+#       o: $NFS_CONN
+#       device: ":/plex/tv"
+#   plex_movies:
+#     driver: local
+#     driver_opts:
+#       type: "nfs"
+#       o: $NFS_CONN
+#       device: ":/plex/movies"
