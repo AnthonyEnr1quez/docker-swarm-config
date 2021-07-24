@@ -2,13 +2,12 @@ version: "3.8"
 
 services:
   sonarr:
-    image: linuxserver/sonarr:preview
+    image: linuxserver/sonarr
     env_file: .env
     environment:
       PUID: $UID
       PGID: $GID
       TZ: $TZ
-      UMASK_SET: 022 #optional
     volumes:
       - sonarr_config:/config
       - sonarr_tv:/tv
