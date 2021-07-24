@@ -13,13 +13,12 @@ services:
     environment:
       - PLEX_UID=1000
       - PLEX_GID=1000
-      - VERSION=docker
       - PLEX_CLAIM= #optional
       - 'ADVERTISE_IP=http://$HUMPBACK:32400/,https://plex.example.com/'
     volumes:
       - plex_config:/config
-      # - plex_tv:/tv
-      - plex_movies:/data
+      - plex_tv:/tv
+      - plex_movies:/movies
     deploy:
       placement:
         constraints: [node.hostname == humpback]
