@@ -9,49 +9,11 @@ services:
     container_name: plex
     network_mode: host
     restart: unless-stopped
-    ports:
-      - 32400:32400
-    # networks:
-    #   - proxy
     environment:
       - 'ADVERTISE_IP=http://$humpback:32400/,https://plex.example.com/'
+      - 'ALLOWED_NETWORKS=192.168.1.0/24,172.16.0.0/12'
     volumes:
       - /mnt/nas1/plex/config:/config
       - /mnt/nas1/plex/transcode:/transcode
       - /mnt/nas1/plex/tv:/tv
       - /mnt/nas1/plex/movies:/movies
-    # labels:
-    #   caddy: plex.example.com
-    #   caddy.reverse_proxy: "{{upstreams 32400}}"
-    #   caddy.tls: "internal"
-    #   caddy.tls.on_demand:
-
-# networks:
-#   proxy:
-#     external: true         
-
-# volumes:
-#   plex_config:
-#     driver: local
-#     driver_opts:
-#       type: "nfs"
-#       o: $NFS_CONN
-#       device: ":/plex/config"
-#   plex_transcode:
-#     driver: local
-#     driver_opts:
-#       type: "nfs"
-#       o: $NFS_CONN
-#       device: ":/plex/transcode"
-#   plex_tv:
-#     driver: local
-#     driver_opts:
-#       type: "nfs"
-#       o: $NFS_CONN
-#       device: ":/plex/tv"
-#   plex_movies:
-#     driver: local
-#     driver_opts:
-#       type: "nfs"
-#       o: $NFS_CONN
-#       device: ":/plex/movies"
