@@ -43,4 +43,4 @@ volumes:
     driver_opts:
       type: "nfs"
       o: $NFS_CONN
-      device: ":/transmission/data"
+      device: ":/data/torrents"

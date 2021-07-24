@@ -15,5 +15,4 @@ services:
     volumes:
       - /mnt/nas1/plex/config:/config
       - /mnt/nas1/plex/transcode:/transcode
-      - /mnt/nas1/plex/tv:/tv
-      - /mnt/nas1/plex/movies:/movies
+      - /mnt/nas1/data/media:/media
