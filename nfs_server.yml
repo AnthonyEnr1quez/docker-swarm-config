@@ -9,8 +9,6 @@ services:
     env_file: .env
     privileged: true
     restart: always
-    # networks:
-    #   - proxy
     ports:
       - "2049:2049"
     # https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities
@@ -23,7 +21,4 @@ services:
       # NFS_DOMAIN: "*" # The visitor IP range
     volumes:
       - /mnt/nas1:/nfs-share
-
-# networks:
-#   proxy:
-#     external: true
+      

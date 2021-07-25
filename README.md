@@ -1,6 +1,7 @@
 # docker
 
 docker volume rm $(docker volume ls -q)
+docker system prune --all --volumes
 
 sudo mount -v -t nfs -o vers=4,port=2049 192.168.0.201:/ docker/data
 umount -f -l /mnt/myfolder

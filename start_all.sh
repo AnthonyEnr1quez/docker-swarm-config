@@ -1,26 +1,42 @@
 #!/bin/bash
 source .nfs_conn
+source .dns_conf
 # run this only on master node rn
-
-docker network create -d overlay --attachable proxy # attachable for qbittorrent until swarmable
-
-docker-compose -f nfs_server.yml up -d
-docker-compose -f qbittorrent up -d
+# TODO this script assumes the plex server is already setup
 
 base="NFS_CONN=${NFS_CONN} docker stack deploy"
+
+running_check () {
+  until docker stack ps -f "name=$1" --format '{{.Name}} {{.CurrentState}}' dns | grep 'Running'
+  do
+    sleep 10
+  done
+}
+
 caddy="${base} -c caddy.yml caddy"
-pihole="${base} -c pihole.yml pihole"
 portainer="${base} -c portainer.yml portainer"
-media="${base} -c jackett.yml -c plex.yml -c radarr.yml -c sonarr.yml media"
-misc="${base} -c shepherd.yml -c whoogle.yml misc"
+stubby="${base} -c stubby.yml dns"
+unbound="docker stack deploy -c unbound.yml dns"
+pihole="${base} -c pihole.yml dns"
+media="${base} -c transmission.yml -c plex/plex.yml -c prowlarr.yml -c sonarr.yml -c radarr.yml media"
+misc="${base} -c shepherd.yml misc" #untested
+whoogle="PIHOLE_SERVER_IP=${PIHOLE_SERVER_IP} docker stack deploy -c whoogle.yml misc" #TODO, doesnt need nfs_conn, check other services
+
+docker network create -d overlay proxy
+
+docker-compose -f nfs_server.yml up -d
 
 eval $caddy
 eval $portainer
 
+docker network create -d overlay dns
+eval $stubby
+echo 'Waiting for stubby service to be running for proper unbound service init...'
+running_check dns_stubby
+eval $unbound
+# TODO add something that will update pihole dns to unbound, listener container?
 eval $pihole
 
-docker network create -d overlay --attachable dns # for stubby_unbound
-#todo ssh into beluga, pipe in docker-compose? and start stubby_unbound
-
 eval $media
-eval $misc
+# eval $misc
+eval $whoogle

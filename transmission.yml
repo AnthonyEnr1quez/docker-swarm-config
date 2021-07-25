@@ -10,8 +10,8 @@ services:
     env_file:
       - .env
     environment:
-      - OPENVPN_PROVIDER=MULLVAD
-      # - OPENVPN_CONFIG=france
+      # - OPENVPN_PROVIDER=
+      # - OPENVPN_CONFIG=france TODO
       # - OPENVPN_USERNAME=user
       # - OPENVPN_PASSWORD=pass
       - LOCAL_NETWORK=10.0.2.0/24
@@ -23,12 +23,13 @@ services:
     networks:
       - proxy
     volumes:
-      - transmission_data:/data
+      - transmission_config:/data/transmission-home
+      - transmission_data:/data/torrents
     deploy:
       placement:
-        constraints: [node.role == manager]
+        constraints: [node.hostname == humpback]
       labels:
-        caddy: transmission.example.com
+        caddy: transmission.lan.com
         caddy.reverse_proxy: "{{upstreams 9091}}"
         caddy.tls: "internal"
         caddy.tls.on_demand:
@@ -38,9 +39,16 @@ networks:
     external: true
 
 volumes:
+  transmission_config:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: $NFS_CONN
+      device: :/docker/transmission
   transmission_data:
     driver: local
     driver_opts:
-      type: "nfs"
+      type: nfs
       o: $NFS_CONN
-      device: ":/data/torrents"
+      device: :/data/torrents
+      

@@ -14,9 +14,9 @@ services:
       - proxy
     deploy:
       placement:
-        constraints: [node.hostname == humpback]
+        constraints: [node.role == worker]
       labels:
-        caddy: prowlarr.example.com
+        caddy: prowlarr.lan.com
         caddy.reverse_proxy: "{{upstreams 9696}}"
         caddy.tls: "internal"
         caddy.tls.on_demand:
@@ -29,6 +29,6 @@ volumes:
   prowlarr_config:
     driver: local
     driver_opts:
-      type: "nfs"
+      type: nfs
       o: $NFS_CONN
-      device: ":/prowlarr/config"
+      device: :/docker/prowlarr

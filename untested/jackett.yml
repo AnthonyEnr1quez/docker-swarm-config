@@ -16,9 +16,9 @@ services:
       - jackett_downloads:/downloads
     deploy:
       placement:
-        constraints: [node.hostname == humpback]
+        constraints: [node.role == worker]
       labels:
-        caddy: jackett.example.com
+        caddy: jackett.lan.com
         caddy.reverse_proxy: "{{upstreams 9117}}"
         caddy.tls: "internal"
         caddy.tls.on_demand:
@@ -31,12 +31,12 @@ volumes:
   jackett_config:
     driver: local
     driver_opts:
-      type: "nfs"
+      type: nfs
       o: $NFS_CONN
-      device: ":/jackett/config"
+      device: :/jackett/config
   jackett_downloads:
     driver: local
     driver_opts:
-      type: "nfs"
+      type: nfs
       o: $NFS_CONN
-      device: ":/jackett/downloads"
+      device: :/jackett/downloads

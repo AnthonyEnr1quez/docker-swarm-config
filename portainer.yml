@@ -1,5 +1,6 @@
 version: '3.8'
 
+#TODO reconfigure login
 services:
   agent:
     image: portainer/agent
@@ -16,9 +17,8 @@ services:
   portainer:
     image: portainer/portainer-ce
     command: -H tcp://tasks.agent:9001 --tlsskipverify
-    ports:
-      # - "9000:9000"
-      - "8000:8000"
+    # ports:
+      # - "8000:8000" #https://documentation.portainer.io/v2.0/deploy/edgeagent/
     volumes:
       - portainer_data:/data
     networks:
@@ -26,7 +26,7 @@ services:
       - proxy
     deploy:
       labels:
-        caddy: portainer.example.com
+        caddy: portainer.lan.com
         caddy.reverse_proxy: "{{upstreams 9000}}"
         caddy.tls: "internal"
         caddy.tls.on_demand:
@@ -46,6 +46,6 @@ volumes:
   portainer_data:
     driver: local
     driver_opts:
-      type: "nfs"
+      type: nfs
       o: $NFS_CONN
-      device: ":/portainer"
+      device: :/docker/portainer

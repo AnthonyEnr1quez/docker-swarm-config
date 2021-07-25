@@ -1,28 +1,15 @@
 version: "3.8"
 
+# stubby container has to be running before trying to deploy, healthcheck will not work due to generated config with stubby ip
 services:
   unbound:
     image: anthonyenr1quez/unbound-arm
-    # env_file: .env
-    ports:
-     - "5053:53/udp"
-     - "5053:53/tcp"
     networks:
      - dns
-#    volumes:
-#      - unbound_conf:/opt/unbound/etc/unbound/
-    # deploy:
-    #   placement:
-    #     constraints: [node.hostname == beluga]
+    deploy:
+      placement:
+        constraints: [node.hostname == beluga]
 
 networks:
   dns:
     external: true
-
-# volumes:
-#   unbound_conf:
-#     driver: local
-#     driver_opts:
-#       type: "nfs"
-#       o: $NFS_CONN
-#       device: ":/unbound"

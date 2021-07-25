@@ -3,13 +3,17 @@ version: "3.8"
 services:
   whoogle-search:
     image: benbusby/whoogle-search:buildx-experimental
+    env_file:
+      - .env
     networks:
       - proxy
+    dns:
+      - $PIHOLE_SERVER_IP
     deploy:
       placement:
         constraints: [node.role == worker]
       labels:
-        caddy: whoogle.example.com
+        caddy: whoogle.lan.com
         caddy.reverse_proxy: "{{upstreams 5000}}"
         caddy.tls: "internal"
         caddy.tls.on_demand:

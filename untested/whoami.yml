@@ -23,7 +23,7 @@ services:
   #   networks:
   #     - caddy_proxy
   #   labels:
-  #     caddy: whoami1.example.com
+  #     caddy: whoami1.lan.com
   #     caddy.reverse_proxy: "{{upstreams 80}}"
   #     # remove the following line when you have verified your setup
   #     # Otherwise you risk being rate limited by let's encrypt
