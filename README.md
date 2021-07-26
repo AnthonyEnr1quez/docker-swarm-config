@@ -63,7 +63,7 @@ The current easiest way to first setup the plex server is start the container us
 
 ## Other Directories
 
-* [broken](broken/): Compose definitions that are currently not working in their current state.
+* [broken](broken/): Compose definitions that are not working in their current state.
 * [untested](untested/): Compose definitions that have not been tested in my current swarm setup and are not in the [`start_all.sh`].
 
 ## Useful Commands
