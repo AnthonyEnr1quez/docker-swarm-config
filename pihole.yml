@@ -11,10 +11,8 @@ services:
     environment:
       TZ: $TZ
       WEBPASSWORD: $PIHOLE_PASS
-      DNS1: 10.0.6.6#53 #TODO, how to populate with unbound container ip?
-      DNS2: 9.9.9.9
-      FTL_CMD: debug
-      DNSMASQ_LISTENING: all
+      PIHOLE_DNS_: 10.0.6.6#53;9.9.9.9 #TODO, how to populate with unbound container ip?
+      TEMPERATUREUNIT: f
     networks:
       - proxy
       - dns

@@ -2,6 +2,7 @@ version: "3.8"
 
 # plex needs to run with host networking to setup the plex server on inital deploy
 # https://www.reddit.com/r/PleX/comments/4qvb8m/plex_media_server_error_setup_is_not_allowed_for/
+# https://github.com/plexinc/pms-docker#running-on-a-headless-server-with-container-using-host-networking
 services:
   plex:
     image: plexinc/pms-docker

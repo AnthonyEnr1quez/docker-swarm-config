@@ -5,10 +5,10 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 
 ### Todo
 
+- [ ] put nfs_server in swarm and connect containers to it through mesh network? https://serverfault.com/a/824548  
 - [ ] plex  
-  - [ ] transcoding  
+  - [ ] transcoding (only works with plex pass)  
 - [ ] docker stack env not working, use swarm secrets?  
-- [ ] Update README.md  
 - [ ] nfs mount permissions, read and write?, locks?  
 - [ ] Check hard links, uid, gid, umask  
 - [ ] gitea  
@@ -40,11 +40,11 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 - [ ] pihole  
   - [ ] stubby  
   - [ ] unbound  
-  - [ ] default routing for docker host port 80 https://github.com/pi-hole/docker-pi-hole#tips-and-tricks  
   - [ ] create script for local dns gen https://dev.to/stjohnjohnson/internal-domains-with-dnsmasq-and-pi-hole-4cof  
 
 ### Done ✓
 
+- [x] Update README.md  
 - [x] fix whoogle  
 - [x] portainer  
 - [x] eventually nas  
