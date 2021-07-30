@@ -3,11 +3,11 @@ version: "3.8"
 services:
   sonarr:
     image: linuxserver/sonarr
-    env_file: .env
     environment:
-      PUID: $UID
-      PGID: $GID
-      TZ: $TZ
+      PUID: ${SONARR_PUID}
+      PGID: ${PGID}
+      UMASK: ${UMASK}
+      TZ: ${TZ}
     volumes:
       - sonarr_config:/config
       - sonarr_data:/data
@@ -30,12 +30,12 @@ volumes:
   sonarr_config:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/docker/sonarr
   sonarr_data:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/data

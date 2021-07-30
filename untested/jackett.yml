@@ -31,12 +31,12 @@ volumes:
   jackett_config:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/jackett/config
   jackett_downloads:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/jackett/downloads

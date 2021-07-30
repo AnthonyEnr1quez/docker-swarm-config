@@ -18,6 +18,7 @@ Configuration to host docker services using docker swarm.
 * [whoogle](whoogle.yml) - private google searches
 
 ### Reverse Proxy
+
 Any service with a front-end UI will be reachable through the caddy proxy. The regular ports are hidden from the hosting node. Caddy is currently generating internal TLS certs on the fly. Future configurations will work with cloudflare for persistent, trusted certs. The current url pattern is `$service_name.lan.com`
 
 ### Volumes
@@ -30,19 +31,15 @@ A couple exceptions are listed below:
 
 ### Secrets/Env Files
 
-Enviornment variables are currently being managed by a combination of bash scripts and ignored dotfiles on the manager node. Some variables are currently not loading correctly due to docker stack not reading them into compose init (see [here](https://github.com/moby/moby/issues/29133)). Current plan is to dive down the wormhole of docker swarm secrets and how to automate those.
+Enviornment variables are currently being managed by a combination of bash scripts and an ignored `.env` file on the manager node.
 
 ### Bash Scripts
 
 There are two bash scripts created to help automate deployment steps.
 
 * [`start_all.sh`] - This sets up all the supported services in this repository.
-  * This scripts relies on two dotfiles to be populated on the manager node.
-    * `.nfs_conn`: file with nfs connection string variable (Example: `NFS_CONN=vers=4,port=2049,addr=192.168.0.100,rw`)
-    * `.dns_conn`: file with pihole server string variable (Example: `PIHOLE_SERVER_IP=192.168.0.100`)
 * [`update.sh`](update.sh)- Use this to quickly redeploy swarm services from the manager node with the correct nfs settings
-  * This script relies on the `.nfs_conn` file mentioned above
-  * The following services are currently not supported by this script: whoogle, stubby, unbound (see quirks below).
+  * The following services are currently not supported by this script: stubby, unbound (see quirks below).
 
 ## Pihole/Stubby/Unbound Quirks
 

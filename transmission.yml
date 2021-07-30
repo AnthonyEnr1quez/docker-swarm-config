@@ -7,13 +7,11 @@ services:
       - NET_ADMIN
     sysctls:
       - "net.ipv6.conf.all.disable_ipv6=0"
-    env_file:
-      - .env
     environment:
-      # - OPENVPN_PROVIDER=
+      - OPENVPN_PROVIDER=${OPENVPN_PROVIDER}
       # - OPENVPN_CONFIG=france TODO
-      # - OPENVPN_USERNAME=user
-      # - OPENVPN_PASSWORD=pass
+      - OPENVPN_USERNAME=${OPENVPN_USERNAME}
+      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
       - LOCAL_NETWORK=10.0.2.0/24
       - TRANSMISSION_WEB_UI=transmission-web-control
     logging:
@@ -42,13 +40,13 @@ volumes:
   transmission_config:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/docker/transmission
   transmission_data:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/data/torrents
       

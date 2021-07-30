@@ -1,10 +1,9 @@
 #!/bin/bash
-source .nfs_conn
-source .dns_conf
+
 # run this only on master node rn
 # TODO this script assumes the plex server is already setup
 
-base="NFS_CONN=${NFS_CONN} docker stack deploy"
+base="env $(cat .env | grep ^[A-Z] | xargs) docker stack deploy"
 
 running_check () {
   until docker stack ps -f "name=$1" --format '{{.Name}} {{.CurrentState}}' dns | grep 'Running'
@@ -20,7 +19,7 @@ unbound="docker stack deploy -c unbound.yml dns"
 pihole="${base} -c pihole.yml dns"
 media="${base} -c transmission.yml -c plex/plex.yml -c prowlarr.yml -c sonarr.yml -c radarr.yml media"
 misc="${base} -c shepherd.yml misc" #untested
-whoogle="PIHOLE_SERVER_IP=${PIHOLE_SERVER_IP} docker stack deploy -c whoogle.yml misc" #TODO, doesnt need nfs_conn, check other services
+whoogle="${base} -c whoogle.yml misc"
 
 docker network create -d overlay proxy
 

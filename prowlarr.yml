@@ -3,11 +3,11 @@ version: "3.8"
 services:
   prowlarr:
     image: linuxserver/prowlarr:develop
-    env_file: .env
     environment:
-      PUID: $UID
-      PGID: $GID
-      TZ: $TZ
+      PUID: ${PROWLARR_PUID}
+      PGID: ${PGID}
+      UMASK: ${UMASK}
+      TZ: ${TZ}
     volumes:
       - prowlarr_config:/config
     networks:
@@ -29,6 +29,6 @@ volumes:
   prowlarr_config:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/docker/prowlarr

@@ -9,7 +9,7 @@ services:
       - stubby_conf:/opt/stubby/etc/stubby/
     deploy:
       placement:
-        constraints: [node.hostname == beluga] #TODO put on worker ?
+        constraints: [node.hostname == beluga]
 
 networks:
   dns:
@@ -19,6 +19,6 @@ volumes:
   stubby_conf:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: ":/docker/stubby"

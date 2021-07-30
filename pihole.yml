@@ -3,14 +3,13 @@ version: "3.8"
 services:
   pihole:
     image: pihole/pihole
-    env_file: .env
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp" # dhcp
     environment:
-      TZ: $TZ
-      WEBPASSWORD: $PIHOLE_PASS
+      TZ: ${TZ}
+      WEBPASSWORD: ${PIHOLE_PASS}
       PIHOLE_DNS_: 10.0.6.6#53;9.9.9.9 #TODO, how to populate with unbound container ip?
       TEMPERATUREUNIT: f
     networks:
@@ -41,12 +40,12 @@ volumes:
   etc_pihole:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/docker/pihole/etc_pihole
   etc_dnsmasqd:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/docker/pihole/etc_dnsmasqd

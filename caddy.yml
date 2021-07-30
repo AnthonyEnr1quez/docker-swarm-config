@@ -3,7 +3,6 @@ version: "3.8"
 services:
   caddy:
     image: lucaslorentz/caddy-docker-proxy:ci
-    env_file: .env
     environment:
       - CADDY_INGRESS_NETWORKS=proxy
     ports:
@@ -28,6 +27,6 @@ volumes:
   caddy_data:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/docker/caddy

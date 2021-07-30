@@ -3,12 +3,10 @@ version: "3.8"
 services:
   whoogle-search:
     image: benbusby/whoogle-search:buildx-experimental
-    env_file:
-      - .env
     networks:
       - proxy
     dns:
-      - $PIHOLE_SERVER_IP
+      - ${PIHOLE_SERVER_IP}
     deploy:
       placement:
         constraints: [node.role == worker]

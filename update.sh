@@ -1,5 +1,4 @@
 #!/bin/bash
-source .nfs_conn
 
 # files=(*.yml)
 # echo ${files[@]}
@@ -8,7 +7,7 @@ source .nfs_conn
 # todo, need pihole dns var for whoogle?
 
 args=( "$@" )
-ds="NFS_CONN=${NFS_CONN} docker stack deploy"
+ds="env $(cat .env | grep ^[A-Z] | xargs) docker stack deploy"
 for i in "${args[@]}"
 do
     ds+=" -c $i"

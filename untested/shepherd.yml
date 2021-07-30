@@ -5,15 +5,23 @@ services:
     image: mazzolino/shepherd
     environment:
       SLEEP_TIME: 2040m # 1 day
+      IGNORELIST_SERVICES: stubby unbound
+      IMAGE_AUTOCLEAN_LIMIT: 5
+      APPRISE_SIDECAR_URL: notify:5000
     networks:
-      - proxy
+      - notification
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
       placement:
-        constraints:
-        - node.role == manager
+        constraints: [node.role == manager]
+
+  notify:
+    image: mazzolino/apprise-microservice
+    environment:
+      NOTIFICATION_URLS: mailtos://user:pass@domain/?to=target@example.com
+    networks:
+      - notification
 
 networks:
-  proxy:
-    external: true
+  notification:

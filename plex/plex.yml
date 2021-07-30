@@ -5,14 +5,14 @@ version: "3.8"
 services:
   plex:
     image: plexinc/pms-docker
-    env_file: .env
     ports:
       - 32400:32400
     networks:
       - proxy
     environment:
-      - PLEX_UID=1000
-      - PLEX_GID=1000
+      - PLEX_UID=${PLEX_PUID}
+      - PLEX_GID=${PGID}
+      - ADVERTISE_IP=${ADVERTISE_IP}
       - PLEX_CLAIM= #optional
       # - 'ALLOWED_NETWORKS=192.168.1.0/24,172.16.0.0/12'
     volumes:
@@ -35,6 +35,6 @@ volumes:
   plex_media:
     driver: local
     driver_opts:
-      type: nfs
-      o: $NFS_CONN
+      type: nfs4
+      o: ${NFS_CONN}
       device: :/data/media
