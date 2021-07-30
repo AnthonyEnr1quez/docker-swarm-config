@@ -3,9 +3,6 @@
 # files=(*.yml)
 # echo ${files[@]}
 
-# todo, add step to clean up nfs docker volumes somehow on each node?????
-# todo, need pihole dns var for whoogle?
-
 args=( "$@" )
 ds="env $(cat .env | grep ^[A-Z] | xargs) docker stack deploy"
 for i in "${args[@]}"

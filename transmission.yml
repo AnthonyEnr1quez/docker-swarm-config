@@ -9,7 +9,7 @@ services:
       - "net.ipv6.conf.all.disable_ipv6=0"
     environment:
       - OPENVPN_PROVIDER=${OPENVPN_PROVIDER}
-      # - OPENVPN_CONFIG=france TODO
+      - OPENVPN_CONFIG=${OPENVPN_CONFIG}
       - OPENVPN_USERNAME=${OPENVPN_USERNAME}
       - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
       - LOCAL_NETWORK=10.0.2.0/24
