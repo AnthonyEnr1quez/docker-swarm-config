@@ -1,26 +1,35 @@
 version: "3.8"
 
 services:
-  prowlarr:
-    image: linuxserver/prowlarr:develop
+  bazarr:
+    image: linuxserver/bazarr
     environment:
-      PUID: ${PROWLARR_PUID}
+      PUID: ${BAZARR_PUID}
       PGID: ${PGID}
       UMASK: ${UMASK}
       TZ: ${TZ}
     volumes:
-      - /home/docker/prowlarr:/config
+      - /home/docker/bazarr:/config
+      - bazarr_data:/data
     networks:
       - proxy
     deploy:
       placement:
         constraints: [node.hostname == vaquita]
       labels:
-        caddy: prowlarr.lan.com
-        caddy.reverse_proxy: "{{upstreams 9696}}"
+        caddy: bazarr.lan.com
+        caddy.reverse_proxy: "{{upstreams 6767}}"
         caddy.tls: "internal"
         caddy.tls.on_demand:
 
 networks:
   proxy:
     external: true
+
+volumes:
+  bazarr_data:
+    driver: local
+    driver_opts:
+      type: nfs4
+      o: ${NFS_CONN}
+      device: :/data

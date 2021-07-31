@@ -9,13 +9,13 @@ services:
       UMASK: ${UMASK}
       TZ: ${TZ}
     volumes:
-      - sonarr_config:/config
+      - /home/docker/sonarr:/config
       - sonarr_data:/data
     networks:
       - proxy
     deploy:
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.hostname == vaquita]
       labels:
         caddy: sonarr.lan.com
         caddy.reverse_proxy: "{{upstreams 8989}}"
@@ -27,12 +27,6 @@ networks:
     external: true
 
 volumes:
-  sonarr_config:
-    driver: local
-    driver_opts:
-      type: nfs4
-      o: ${NFS_CONN}
-      device: :/docker/sonarr
   sonarr_data:
     driver: local
     driver_opts:
