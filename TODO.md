@@ -6,11 +6,8 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 ### Todo
 
 - [ ] put nfs_server in swarm and connect containers to it through mesh network? https://serverfault.com/a/824548  
-- [ ] plex  
-  - [ ] transcoding (only works with plex pass)  
-- [ ] docker stack env not working, use swarm secrets?  
+  - [ ] plex transcoding (only works with plex pass)  
 - [ ] nfs mount permissions, read and write?, locks?  
-- [ ] Check hard links, uid, gid, umask  
 - [ ] gitea  
 - [ ] ansible playbook to automate pi setup?  
 - [ ] shepherd  
@@ -20,7 +17,6 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 - [ ] ddClient  
 - [ ] homepage  
 - [ ] setup pihole dns based on generated caddy file  
-- [ ] have sonarr use caddy urls instead of container directly http://containername:port  
 - [ ] drone ci  
 - [ ] trakt  
 - [ ] rss  
@@ -33,17 +29,19 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 - [ ] adguard home  
 - [ ] hashicorp vault  
 - [ ] nas auto remount  
-- [ ] when mounting nfs from dir with both nas and sd card folder, containers will write to sd card in "nas" folder  
 
 ### In Progress
 
-- [ ] pihole  
-  - [ ] stubby  
-  - [ ] unbound  
-  - [ ] create script for local dns gen https://dev.to/stjohnjohnson/internal-domains-with-dnsmasq-and-pi-hole-4cof  
 
 ### Done ✓
 
+- [x] have sonarr use caddy urls instead of container directly http://containername:port  
+- [x] pihole  
+  - [x] stubby  
+  - [x] unbound  
+- [x] docker stack env not working, use swarm secrets?  
+- [x] Check hard links, uid, gid, umask  
+- [x] plex  
 - [x] Update README.md  
 - [x] fix whoogle  
 - [x] portainer  

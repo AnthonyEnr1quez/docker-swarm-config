@@ -13,10 +13,11 @@ services:
       - PLEX_UID=${PLEX_PUID}
       - PLEX_GID=${PGID}
       - ADVERTISE_IP=${ADVERTISE_IP}
+      - TZ=${TZ}
       - PLEX_CLAIM= #optional
       # - 'ALLOWED_NETWORKS=192.168.1.0/24,172.16.0.0/12'
     volumes:
-      - /mnt/nas1/docker/plex:/config
+      - /home/docker/plex:/config
       - plex_media:/media
     deploy:
       placement:

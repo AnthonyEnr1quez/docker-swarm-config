@@ -11,7 +11,7 @@ Configuration to host docker services using docker swarm.
 * [unbound](unbound.yml) - validating, recursive, caching DNS resolver
 * [pihole](pihole.yml)- ad blocking DNS server
 * [transmission](transmission.yml)- torrent client
-* [plex](plex/plex.yml)- media server
+* [plex](plex.yml)- media server
 * [prowlarr](prowlarr.yml) - automated indexer manager
 * [sonarr](sonarr.yml) - automated TV show manager
 * [radarr](radarr.yml) - automated movie manager
@@ -27,6 +27,7 @@ Most volumes are mounted to the container using the nfs share created with [nfs_
 A couple exceptions are listed below:
 
 * plex: the plex library and database have issues with file locking over nfs shares. It may be possible to configure but is a headache (see [here](https://www.reddit.com/r/PleX/comments/ff4a59/plex_hangs_with_library_and_database_on_nfs/)).
+  * [sqlite](https://stackoverflow.com/questions/788517/sqlite-over-a-network-share)
 * [nfs_server]: needs to mount the the locally mounted nas server to share
 
 ### Secrets/Env Files
@@ -56,7 +57,7 @@ You will also need to manually enter the unbound container ip in the pihole dns 
 
 ## Plex Setup
 
-The current easiest way to first setup the plex server is start the container using docker-compose and using host networking. Once the server is up and running, the plex service can be deployed into the swarm. The [setup_plex_server.yml](plex/setup_plex_server.yml) can be used if your plex server has not been created.
+The current easiest way to first setup the plex server is to deploy the plex service and connect to it using host networking.
 
 ## Other Directories
 

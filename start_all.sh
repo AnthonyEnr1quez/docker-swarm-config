@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # run this only on master node rn
-# this script assumes the plex server is already setup
 
 base="env $(cat .env | grep ^[A-Z] | xargs) docker stack deploy"
 
