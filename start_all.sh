@@ -16,7 +16,7 @@ portainer="${base} -c portainer.yml portainer"
 stubby="${base} -c stubby.yml dns"
 unbound="docker stack deploy -c unbound.yml dns"
 pihole="${base} -c pihole.yml dns"
-media="${base} -c transmission.yml -c plex/plex.yml -c prowlarr.yml -c sonarr.yml -c radarr.yml media"
+media="${base} -c transmission.yml -c plex/plex.yml -c prowlarr.yml -c sonarr.yml -c radarr.yml -c overseerr.yml -c requestrr.yml media"
 misc="${base} -c shepherd.yml misc" #untested
 whoogle="${base} -c whoogle.yml misc"
 

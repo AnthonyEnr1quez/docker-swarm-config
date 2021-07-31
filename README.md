@@ -17,6 +17,7 @@ Configuration to host docker services using docker swarm.
 * [radarr](radarr.yml) - automated movie manager
 * [bazarr](bazarr.yml) - automated media subtitle manager
 * [overseerr](overseerr.yml) - media library request manager
+* [requestrr](requestrr.yml) - discord chatbot for media library requests
 * [whoogle](whoogle.yml) - private google searches
 
 ### Reverse Proxy
