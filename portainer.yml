@@ -18,6 +18,7 @@ services:
     image: portainer/portainer-ce
     command: -H tcp://tasks.agent:9001 --tlsskipverify
     # ports:
+    #   - 9000:9000
       # - "8000:8000" #https://documentation.portainer.io/v2.0/deploy/edgeagent/
     volumes:
       - portainer_data:/data

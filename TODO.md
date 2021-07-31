@@ -5,6 +5,7 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 
 ### Todo
 
+- [ ] backup local db to nas using borg?  
 - [ ] put nfs_server in swarm and connect containers to it through mesh network? https://serverfault.com/a/824548  
   - [ ] plex transcoding (only works with plex pass)  
 - [ ] nfs mount permissions, read and write?, locks?  

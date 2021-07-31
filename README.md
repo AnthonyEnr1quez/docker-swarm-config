@@ -15,6 +15,8 @@ Configuration to host docker services using docker swarm.
 * [prowlarr](prowlarr.yml) - automated indexer manager
 * [sonarr](sonarr.yml) - automated TV show manager
 * [radarr](radarr.yml) - automated movie manager
+* [bazarr](bazarr.yml) - automated media subtitle manager
+* [overseerr](overseerr.yml) - media library request manager
 * [whoogle](whoogle.yml) - private google searches
 
 ### Reverse Proxy

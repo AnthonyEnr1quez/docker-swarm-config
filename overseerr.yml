@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  overseerr:
+    image: linuxserver/overseerr
+    environment:
+      PUID: ${OVERSEERR_PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
+    volumes:
+      - /home/docker/overseerr:/config
+    networks:
+      - proxy
+    deploy:
+      placement:
+        constraints: [node.hostname == vaquita]
+      labels:
+        caddy: overseerr.lan.com
+        caddy.reverse_proxy: "{{upstreams 5055}}"
+        caddy.tls: "internal"
+        caddy.tls.on_demand:
+
+networks:
+  proxy:
+    external: true
