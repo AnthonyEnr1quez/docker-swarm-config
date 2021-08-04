@@ -10,7 +10,7 @@ services:
     environment:
       TZ: ${TZ}
       WEBPASSWORD: ${PIHOLE_PASS}
-      PIHOLE_DNS_: 10.0.6.6#53;9.9.9.9 #TODO, how to populate with unbound container ip?
+      PIHOLE_DNS_: 10.0.6.6#53;1.1.1.1 #TODO, how to populate with unbound container ip?
       TEMPERATUREUNIT: f
     networks:
       - proxy
@@ -25,9 +25,9 @@ services:
       placement:
         constraints: [node.hostname == beluga]
       labels:
-        caddy: pihole.lan.com
+        caddy: pihole.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 80}}" #forwarding 443 breaks the web ui?
-        caddy.tls: "internal"
+        caddy.tls: internal
         caddy.tls.on_demand:
 
 networks:

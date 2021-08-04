@@ -18,9 +18,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
     deploy:
       labels:
-        caddy: gitea.lan.com
+        caddy: gitea.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 3000}}"
-        caddy.tls: "internal"
+        caddy.tls: internal
         caddy.tls.on_demand:
 
 networks:

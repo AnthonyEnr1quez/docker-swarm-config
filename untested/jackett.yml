@@ -18,9 +18,9 @@ services:
       placement:
         constraints: [node.role == worker]
       labels:
-        caddy: jackett.lan.com
+        caddy: jackett.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 9117}}"
-        caddy.tls: "internal"
+        caddy.tls: internal
         caddy.tls.on_demand:
 
 networks:

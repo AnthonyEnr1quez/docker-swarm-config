@@ -22,7 +22,7 @@ Configuration to host docker services using docker swarm.
 
 ### Reverse Proxy
 
-Any service with a front-end UI will be reachable through the caddy proxy. The regular ports are hidden from the hosting node. Caddy is currently generating internal TLS certs on the fly. Future configurations will work with cloudflare for persistent, trusted certs. The current url pattern is `$service_name.lan.com`
+Any service with a front-end UI will be reachable through the caddy proxy. The regular ports are hidden from the hosting node. Caddy is currently generating internal TLS certs on the fly. Future configurations will work with cloudflare for persistent, trusted certs. The current url pattern is `$service_name.ant-podz.xyz`
 
 ### Volumes
 

@@ -11,9 +11,9 @@ services:
       placement:
         constraints: [node.role == worker]
       labels:
-        caddy: whoogle.lan.com
+        caddy: whoogle.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 5000}}"
-        caddy.tls: "internal"
+        caddy.tls: internal
         caddy.tls.on_demand:
 
 networks:

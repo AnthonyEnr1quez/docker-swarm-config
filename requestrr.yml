@@ -16,9 +16,9 @@ services:
       placement:
         constraints: [node.hostname == vaquita]
       labels:
-        caddy: requestrr.lan.com
+        caddy: requestrr.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 4545}}"
-        caddy.tls: "internal"
+        caddy.tls: internal
         caddy.tls.on_demand:
 
 networks:

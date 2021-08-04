@@ -17,9 +17,9 @@ services:
       placement:
         constraints: [node.hostname == vaquita]
       labels:
-        caddy: sonarr.lan.com
+        caddy: sonarr.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 8989}}"
-        caddy.tls: "internal"
+        caddy.tls: internal
         caddy.tls.on_demand:
 
 networks:

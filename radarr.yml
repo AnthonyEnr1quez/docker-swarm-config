@@ -17,9 +17,9 @@ services:
       placement:
         constraints: [node.hostname == vaquita]
       labels:
-        caddy: radarr.lan.com
+        caddy: radarr.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 7878}}"
-        caddy.tls: "internal"
+        caddy.tls: internal
         caddy.tls.on_demand:
 
 networks:

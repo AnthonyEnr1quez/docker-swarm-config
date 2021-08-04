@@ -28,12 +28,12 @@ services:
       - qbittorrent_downloads:/downloads
       - /etc/localtime:/etc/localtime:ro
     labels:
-      caddy: qbittorrent.lan.com
+      caddy: qbittorrent.ant-podz.xyz
       caddy.reverse_proxy: "{{upstreams http 8080}}"
       # caddy.reverse_proxy.header_upstream X-Forwarded-Host: "{host}:443"
       # caddy.reverse_proxy.header_upstream -Origin: 
       # caddy.reverse_proxy.header_upstream -Referer: 
-      caddy.tls: "internal"
+      caddy.tls: internal
       caddy.tls.on_demand:
 
 networks:

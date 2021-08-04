@@ -27,9 +27,9 @@ services:
       placement:
         constraints: [node.hostname == humpback]
       labels:
-        caddy: transmission.lan.com
+        caddy: transmission.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 9091}}"
-        caddy.tls: "internal"
+        caddy.tls: internal
         caddy.tls.on_demand:
 
 networks:

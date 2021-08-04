@@ -2,9 +2,10 @@ version: "3.8"
 
 services:
   caddy:
-    image: lucaslorentz/caddy-docker-proxy:ci
+    image: homeall/caddy-reverse-proxy-cloudflare:latest
     environment:
-      - CADDY_INGRESS_NETWORKS=proxy
+      CADDY_INGRESS_NETWORKS: proxy
+      TZ: ${TZ}
     ports:
       - 80:80
       - 443:443
@@ -14,7 +15,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - caddy_data:/data  # this volume is needed to keep the certificates otherwise, new ones will be re-issued upon restart
     labels: # Global options
-      caddy.email: dttztceclomabxpzit@kiabws.online
+      caddy.email: ${LETSENCRYPT_EMAIL}
     deploy:
       placement:
         constraints: [node.role == manager]

@@ -1,0 +1,34 @@
+version: "3.8"
+
+# Used to test reverse proxy
+services:  
+  # Local TLS Proxy to container
+  whoami0:
+    image: containous/whoami
+    networks:
+      - proxy
+    deploy:
+      labels:
+        caddy: whoami0.ant-podz.xyz
+        caddy.reverse_proxy: "{{upstreams 80}}"
+        caddy.tls: internal
+        caddy.tls.on_demand:
+  
+  # Proxy to service that you want to expose to the outside world
+  whoami1:
+    image: containous/whoami
+    networks:
+      - proxy
+    labels:
+      caddy: whoami1.ant-podz.xyz
+      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy.tls.dns: "cloudflare ${CLOUDFLARE_TOKEN}"
+      caddy.tls.resolvers: 1.1.1.1
+      # remove the following line when you have verified your setup
+      # Otherwise you risk being rate limited by let's encrypt
+      caddy.tls.ca: https://acme-staging-v02.api.letsencrypt.org/directory
+
+networks:
+  proxy:
+    external: true
+    

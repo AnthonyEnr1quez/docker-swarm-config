@@ -16,10 +16,10 @@ services:
       placement:
         constraints: [node.hostname == vaquita]
       labels:
-        caddy: overseerr.lan.com
+        caddy: overseerr.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 5055}}"
-        caddy.tls: "internal"
-        caddy.tls.on_demand:
+        caddy.tls.dns: "cloudflare ${CLOUDFLARE_TOKEN}"
+        caddy.tls.resolvers: 1.1.1.1
 
 networks:
   proxy:

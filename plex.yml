@@ -5,8 +5,8 @@ version: "3.8"
 services:
   plex:
     image: plexinc/pms-docker
-    ports:
-      - 32400:32400
+    # ports:
+    #   - 32400:32400
     networks:
       - proxy
     environment:
@@ -23,10 +23,10 @@ services:
       placement:
         constraints: [node.hostname == humpback]
       labels:
-        caddy: plex.lan.com
+        caddy: plex.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 32400}}"
-        caddy.tls: "internal"
-        caddy.tls.on_demand:
+        caddy.tls.dns: "cloudflare ${CLOUDFLARE_TOKEN}"
+        caddy.tls.resolvers: 1.1.1.1
 
 networks:
   proxy:
