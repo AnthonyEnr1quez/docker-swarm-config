@@ -56,8 +56,6 @@ The stubby and unbound images are based on [MatthewVance/stubby-docker](https://
 
 This process is somewhat automated in the [`start_all.sh`] script with the `running_check` function.
 
-You will also need to manually enter the unbound container ip in the pihole dns setting (automation coming soon?).
-
 ## Plex Setup
 
 The current easiest way to first setup the plex server is to deploy the plex service and connect to it using host networking.
