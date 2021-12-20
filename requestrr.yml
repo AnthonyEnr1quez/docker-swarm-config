@@ -9,12 +9,12 @@ services:
       UMASK: ${UMASK}
       TZ: ${TZ}
     volumes:
-      - /home/docker/requestrr:/config
+      - requestrr_config:/config
     networks:
       - proxy
     deploy:
       placement:
-        constraints: [node.hostname == vaquita]
+        constraints: [node.hostname == beluga]
       labels:
         caddy: requestrr.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 4545}}"
@@ -24,3 +24,6 @@ services:
 networks:
   proxy:
     external: true
+
+volumes:
+  requestrr_config:

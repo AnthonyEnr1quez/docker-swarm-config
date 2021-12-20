@@ -9,13 +9,13 @@ services:
       UMASK: ${UMASK}
       TZ: ${TZ}
     volumes:
-      - /home/docker/sonarr:/config
+      - sonarr_config:/config
       - sonarr_data:/data
     networks:
       - proxy
     deploy:
       placement:
-        constraints: [node.hostname == vaquita]
+        constraints: [node.hostname == beluga]
       labels:
         caddy: sonarr.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 8989}}"
@@ -27,6 +27,7 @@ networks:
     external: true
 
 volumes:
+  sonarr_config:
   sonarr_data:
     driver: local
     driver_opts:

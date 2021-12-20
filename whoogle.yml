@@ -9,7 +9,7 @@ services:
       - ${PIHOLE_SERVER_IP}
     deploy:
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.hostname == vaquita]
       labels:
         caddy: whoogle.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 5000}}"

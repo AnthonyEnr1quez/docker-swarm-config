@@ -19,5 +19,5 @@ services:
       NFS_OPTION: 'fsid=0,rw,sync,insecure,no_subtree_check,nohide,no_root_squash' ## todo use userid
       # NFS_DOMAIN: "*" # The visitor IP range
     volumes:
-      - /mnt/nas1:/nfs-share
+      - /media/nas1:/nfs-share
       

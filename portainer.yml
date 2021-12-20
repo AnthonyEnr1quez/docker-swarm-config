@@ -45,8 +45,8 @@ networks:
 
 volumes:
   portainer_data:
-    driver: local
-    driver_opts:
-      type: nfs4
-      o: ${NFS_CONN}
-      device: :/docker/portainer
+    # driver: local
+    # driver_opts:
+    #   type: nfs4
+    #   o: ${NFS_CONN}
+    #   device: :/docker/portainer

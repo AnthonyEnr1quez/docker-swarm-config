@@ -9,12 +9,12 @@ services:
       UMASK: ${UMASK}
       TZ: ${TZ}
     volumes:
-      - /home/docker/overseerr:/config
+      - overseerr_config:/config
     networks:
       - proxy
     deploy:
       placement:
-        constraints: [node.hostname == vaquita]
+        constraints: [node.hostname == beluga]
       labels:
         caddy: overseerr.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 5055}}"
@@ -24,3 +24,6 @@ services:
 networks:
   proxy:
     external: true
+
+volumes:
+  overseerr_config:

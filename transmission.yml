@@ -25,7 +25,7 @@ services:
       - transmission_data:/data/torrents
     deploy:
       placement:
-        constraints: [node.hostname == humpback]
+        constraints: [node.hostname == humpback] #beluga?
       labels:
         caddy: transmission.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 9091}}"
@@ -36,13 +36,14 @@ networks:
   proxy:
     external: true
 
+# todo named
 volumes:
   transmission_config:
-    driver: local
-    driver_opts:
-      type: nfs4
-      o: ${NFS_CONN}
-      device: :/docker/transmission
+    # driver: local
+    # driver_opts:
+    #   type: nfs4
+    #   o: ${NFS_CONN}
+    #   device: :/docker/transmission
   transmission_data:
     driver: local
     driver_opts:

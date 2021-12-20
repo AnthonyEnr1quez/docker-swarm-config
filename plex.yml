@@ -17,8 +17,8 @@ services:
       - PLEX_CLAIM= #optional
       # - 'ALLOWED_NETWORKS=192.168.1.0/24,172.16.0.0/12'
     volumes:
-      - /home/docker/plex:/config
-      - plex_media:/media
+      - plex_config:/config
+      - /media/nas1/data/media:/media
     deploy:
       placement:
         constraints: [node.hostname == humpback]
@@ -33,9 +33,10 @@ networks:
     external: true         
 
 volumes:
-  plex_media:
-    driver: local
-    driver_opts:
-      type: nfs4
-      o: ${NFS_CONN}
-      device: :/data/media
+  plex_config:
+  # plex_media:
+  #   driver: local
+  #   driver_opts:
+  #     type: nfs4
+  #     o: ${NFS_CONN}
+  #     device: :/data/media

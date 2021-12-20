@@ -9,13 +9,13 @@ services:
       UMASK: ${UMASK}
       TZ: ${TZ}
     volumes:
-      - /home/docker/bazarr:/config
+      - bazarr_config:/config
       - bazarr_data:/data
     networks:
       - proxy
     deploy:
       placement:
-        constraints: [node.hostname == vaquita]
+        constraints: [node.hostname == beluga]
       labels:
         caddy: bazarr.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 6767}}"
@@ -27,6 +27,7 @@ networks:
     external: true
 
 volumes:
+  bazarr_config:
   bazarr_data:
     driver: local
     driver_opts:

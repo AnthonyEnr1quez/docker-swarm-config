@@ -9,12 +9,13 @@ services:
       - stubby_conf:/opt/stubby/etc/stubby/
     deploy:
       placement:
-        constraints: [node.hostname == beluga]
+        constraints: [node.hostname == vaquita]
 
 networks:
   dns:
     external: true
 
+# todo named
 volumes:
   stubby_conf:
     driver: local

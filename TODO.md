@@ -5,6 +5,7 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 
 ### Todo
 
+- [ ] back up .env file  
 - [ ] backup local db to nas using borg?  
 - [ ] put nfs_server in swarm and connect containers to it through mesh network? https://serverfault.com/a/824548  
   - [ ] plex transcoding (only works with plex pass)  
@@ -29,13 +30,13 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 - [ ] email, poste.io  
 - [ ] adguard home  
 - [ ] hashicorp vault  
-- [ ] nas auto remount  
 
 ### In Progress
 
 
 ### Done ✓
 
+- [x] nas auto remount  
 - [x] have sonarr use caddy urls instead of container directly http://containername:port  
 - [x] pihole  
   - [x] stubby  

@@ -23,7 +23,7 @@ services:
       # - ./pihole.log:/var/log/pihole.log
     deploy:
       placement:
-        constraints: [node.hostname == beluga]
+        constraints: [node.hostname == vaquita]
       labels:
         caddy: pihole.ant-podz.xyz
         caddy.reverse_proxy: "{{upstreams 80}}" #forwarding 443 breaks the web ui?
@@ -36,6 +36,7 @@ networks:
   dns:
     external: true
 
+#todo, change to named volumes
 volumes:
   etc_pihole:
     driver: local
