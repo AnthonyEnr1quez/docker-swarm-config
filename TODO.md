@@ -8,7 +8,7 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 - [ ] back up .env file  
 - [ ] backup local db to nas using borg?  
 - [ ] put nfs_server in swarm and connect containers to it through mesh network? https://serverfault.com/a/824548  
-  - [ ] plex transcoding (only works with plex pass)  
+- [ ] plex transcoding (only works with plex pass)  
 - [ ] nfs mount permissions, read and write?, locks?  
 - [ ] gitea  
 - [ ] ansible playbook to automate pi setup?  
@@ -30,6 +30,7 @@ The format is based on [TODO.md](https://github.com/todomd/todo.md).
 - [ ] email, poste.io  
 - [ ] adguard home  
 - [ ] hashicorp vault  
+- [ ] unbound for adguard
 
 ### In Progress
 

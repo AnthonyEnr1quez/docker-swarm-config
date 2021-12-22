@@ -7,6 +7,7 @@ Configuration to host docker services using docker swarm.
 * [nfs_server] - nfsv4 server
 * [caddy](caddy.yml) - caddy 2 reverse proxy
 * [portainer](portainer.yml) - container management UI
+* [adguard](adguard.yml) - ad blocking DNS server
 * [stubby](stubby.yml)- DNS Privacy stub resolver using DNS-over-TLS
 * [unbound](unbound.yml) - validating, recursive, caching DNS resolver
 * [pihole](pihole.yml)- ad blocking DNS server
@@ -67,6 +68,7 @@ The current easiest way to first setup the plex server is to deploy the plex ser
 
 ## Useful Commands
 
+* View caddy config json `docker service logs dns_caddy 2>&1 | grep "New Caddyfile" | tail -1 | xargs -0 echo -e`
 * Remove all docker volumes on node: `docker volume rm $(docker volume ls -q)`
 * Prune EVERYTHING: `docker system prune --all --volumes`
 * Mount NFS: `sudo mount -v -t nfs -o vers=4,port=2049 192.168.0.201:/ docker/data`

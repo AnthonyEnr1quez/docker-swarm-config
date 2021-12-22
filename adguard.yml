@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  adguard:
+    image: adguard/adguardhome
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      # - 853:853/tcp todo DOT
+      # - 444:443/tcp
+    networks:
+      - proxy
+    volumes:
+      - adguard_work:/opt/adguardhome/work
+      - adguard_conf:/opt/adguardhome/conf
+    deploy:
+      placement:
+        constraints: [node.hostname == vaquita]
+      labels:
+        caddy: adguard.ant-podz.xyz
+        caddy.reverse_proxy: "{{upstreams 80}}"
+        caddy.tls: internal
+        caddy.tls.on_demand:
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  adguard_work:
+  adguard_conf:
