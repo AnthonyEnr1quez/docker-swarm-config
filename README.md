@@ -1,4 +1,6 @@
-# docker
+# docker-swarm-config
+
+⚠️ This repo is deprecated, see [AnthonyEnr1quez/k3s-gitops](https://github.com/AnthonyEnr1quez/k3s-gitops) for latest configuration.
 
 Configuration to host docker services using docker swarm.
 
@@ -36,7 +38,7 @@ A couple exceptions are listed below:
 
 ### Secrets/Env Files
 
-Enviornment variables are currently being managed by a combination of bash scripts and an ignored `.env` file on the manager node.
+Enviornment variables are currently being managed by a combination of bash scripts and an ignored `.env` file on the manager node. An [example env file](.env.example) is included in the repo.
 
 ### Bash Scripts
 
